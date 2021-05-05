@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/index.368a6637.chunk.js","sources":["/Users/choeyunseo/Desktop/chrome_ex/chrome-extension/src/popup/index.tsx"],"sourcesContent":["//index.tsx\n\nexport const func = () => {\n\n};\n\n"],"mappings":";;;;;;;;;;;;;;;AAAA;AAEA;AACA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;A","sourceRoot":""}

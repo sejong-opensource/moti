@@ -15,5 +15,6 @@
     "default_icon": "logo512.png",
     "default_popup": "popup.html"
   },
-  "options_page": "index.html"
+  "options_page": "index.html",
+  "content_security_policy": "default-src 'self'"
 }

@@ -12,8 +12,7 @@
     "persistent": true
   },
   "browser_action": {
-    "default_icon": "logo512.png",
-    "default_popup": "popup.html"
+    "default_icon": "logo512.png"
   },
   "chrome_url_overrides": {
     "newtab": "index.html"

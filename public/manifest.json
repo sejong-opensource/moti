@@ -15,6 +15,7 @@
     "default_icon": "logo512.png",
     "default_popup": "popup.html"
   },
-  "options_page": "index.html",
-  "content_security_policy": "default-src 'self'"
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  }
 }

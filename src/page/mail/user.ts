@@ -1,7 +1,7 @@
 const userInfo = {
-  email: "",
-  password: "",
-  host: "",
+  email: "98gudcks@gmail.com",
+  password: "ehlswkd1!!",
+  host: "imap.gmail.com",
 };
 
 export const getUserInfo = () => {

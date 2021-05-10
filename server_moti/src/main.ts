@@ -1,7 +1,7 @@
 import * as express from "express";
 import * as cors from "cors";
 import * as bodyParser from "body-parser";
-import { getEmail } from "./getEmail";
+import { getMail } from "./getMail";
 const app = express();
 const port = 3002;
 
@@ -13,7 +13,7 @@ const port = 3002;
 app.use(bodyParser.json());
 app.use(cors());
 app.post("/getEmail", async (req, res) => {
-  const result = await getEmail(req.body.email, req.body.password, req.body.host);
+  const result = await getMail(req.body.email, req.body.password, req.body.host);
   res.send(result);
   res.status(200);
 });
@@ -21,3 +21,4 @@ app.post("/getEmail", async (req, res) => {
 app.listen(port, () => {
   console.log(`http://localhost:${port}`);
 });
+// getMail("98gudcks@gmail.com", "ehlswkd1!!", "imap.gmail.com").then(results => console.log(results));

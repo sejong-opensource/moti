@@ -2,13 +2,15 @@
   "compilerOptions": {
     "target": "es5",
     "lib": [
+      "es5","es6",
       "dom",
       "dom.iterable",
       "esnext"
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "esModuleInterop": true,
+    "outDir": "./build",
+    "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
     "strict": false,
     "forceConsistentCasingInFileNames": true,
@@ -20,7 +22,4 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": [
-    "src"
-  ]
 }

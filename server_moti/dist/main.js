@@ -17,6 +17,7 @@ app.post("/getEmail", async (req, res) => {
     const result = await getMail_1.getMail(req.body.email, req.body.password, req.body.host);
     res.send(result);
     res.status(200);
+    console.log("done");
 });
 app.listen(port, () => {
     console.log(`http://localhost:${port}`);

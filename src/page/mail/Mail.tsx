@@ -1,19 +1,40 @@
 import React from "react";
-import { getUserInfo } from "./user";
+import { getUserInfo, getAlarmList } from "./user";
 import PopupSetting from "./PopupSetting";
 import axios from "axios";
+//Todo
+// 2.  이메일 필터링 기능 ( 도메인, 발신자)
+// 3.  출력
 
-type email = {
+type mail = {
   date: string;
   title: string;
   sender: string;
 };
+const selectMail = (mail: mail) => {
+  const alarmList = getAlarmList();
+  let result = true;
+  alarmList.map((value) => {
+    if (mail.sender.indexOf(value)) {
+      result = false;
+    }
+  });
+  return result;
+};
+const extractSender = (email: string) => {
+  const start = email.indexOf("<");
+  const end = email.indexOf(">");
+  const result = email.slice(start + 1, end);
+  return result;
+};
+const extractDate = (date: string) => {
+  const result = new Date(date).toDateString();
+  return result;
+};
 const Mail = () => {
-  const [titleList, setTitleList] = React.useState([]);
-  const getTitleList = titleList.map(title => <li>{title}</li>);
   const userInfo = getUserInfo();
-  let emailList: email[];
-  const request = () => {
+  let emailList: mail[] = [];
+  const getMail = () => {
     axios({
       url: "http://localhost:3002/getEmail",
       method: "POST",
@@ -21,15 +42,22 @@ const Mail = () => {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      data: { email: userInfo.email, password: userInfo.password, host: userInfo.host },
-    }).then(res => {
-      res.data.map((email: email) => {
-        console.log(email.title);
+      data: {
+        email: userInfo.email,
+        password: userInfo.password,
+        host: userInfo.host,
+      },
+    }).then((res) => {
+      emailList = res.data.map((mail: mail) => {
+        // console.log(extractSender(email.sender));
+        // console.log(extractDate(email.date));
+        if (selectMail(mail)) {
+          return mail;
+        }
       });
+
+      console.log(emailList);
     });
-  };
-  const getMail = () => {
-    request();
   };
   getMail();
   return (
@@ -42,7 +70,7 @@ const Mail = () => {
       >
         GET EMAIL
       </button>
-      <ul>{getTitleList}</ul>
+      <ul></ul>
     </div>
   );
 };

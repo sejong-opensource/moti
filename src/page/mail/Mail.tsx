@@ -2,15 +2,14 @@ import React from "react";
 import { getUserInfo, getAlarmList } from "./user";
 import PopupSetting from "./PopupSetting";
 import axios from "axios";
-//Todo
-// 2.  이메일 필터링 기능 ( 도메인, 발신자)
-// 3.  출력
+//Todo 1. firebase 혹은 storage 연동
 
 type mail = {
   date: string;
   title: string;
   sender: string;
 };
+
 const selectMail = (mail: mail) => {
   const alarmList = getAlarmList();
   let result = true;
@@ -32,9 +31,14 @@ const extractDate = (date: string) => {
   return result;
 };
 const Mail = () => {
+  const [mailList, setMailList] = React.useState<mail[]>(null);
+  const [isMail, setIsMail] = React.useState(false);
   const userInfo = getUserInfo();
-  let emailList: mail[] = [];
+  const reload = () => {
+    setIsMail(false);
+  };
   const getMail = () => {
+    console.log("[getMail] start...", new Date().toTimeString());
     axios({
       url: "http://localhost:3002/getEmail",
       method: "POST",
@@ -48,29 +52,41 @@ const Mail = () => {
         host: userInfo.host,
       },
     }).then((res) => {
-      emailList = res.data.map((mail: mail) => {
-        // console.log(extractSender(email.sender));
-        // console.log(extractDate(email.date));
-        if (selectMail(mail)) {
-          return mail;
-        }
+      let temp = res.data.filter((mail: mail) => {
+        mail.sender = extractSender(mail.sender);
+        mail.date = extractDate(mail.date);
+        return selectMail(mail);
       });
-
-      console.log(emailList);
+      setMailList(temp);
+      console.log("[getMail] end...", new Date().toTimeString());
+      setIsMail(true);
     });
   };
-  getMail();
+  React.useEffect(() => {
+    if (!isMail) {
+      getMail();
+    }
+  });
   return (
     <div>
-      <PopupSetting />
+      <PopupSetting callback={reload} />
       <button
-        onClick={async () => {
+        onClick={() => {
+          setIsMail(false);
           getMail();
         }}
       >
         GET EMAIL
       </button>
-      <ul></ul>
+      <ul>
+        {mailList
+          ? mailList.map((mail) => (
+              <li>
+                {mail.title} / {mail.date} / {mail.sender}
+              </li>
+            ))
+          : null}
+      </ul>
     </div>
   );
 };

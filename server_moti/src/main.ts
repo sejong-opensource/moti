@@ -20,7 +20,7 @@ app.post("/getEmail", async (req, res) => {
   );
   res.send(result);
   res.status(200);
-  console.log("done");
+  console.log("done at ", new Date().toTimeString());
 });
 
 app.listen(port, () => {

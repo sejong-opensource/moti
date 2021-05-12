@@ -3,7 +3,13 @@ const userInfo = {
   password: "ehlswkd1!!",
   host: "imap.gmail.com",
 };
-
+let alarmList = ["seongsu1"];
+export const getAlarmList = () => {
+  return alarmList;
+};
+export const setAlarmList = (value: string) => {
+  alarmList.push(value);
+};
 export const getUserInfo = () => {
   return userInfo;
 };

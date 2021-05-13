@@ -1,43 +1,85 @@
 import React from "react";
 import "./Pomodoro.css";
 const breakTimeMsg = "Break Time! New session starts in :";
-const maxWork = 1;
-const maxBreak = 1;
+const WorkTimeMsg = "I'm Focus in Work";
+const maxWork = 5;
+const maxBreak = 5;
 const Pomodoro = () => {
-  const [min, setMin] = React.useState(maxWork);
-  const [sec, setSec] = React.useState(0);
-  const [displayMsg, setDisplayMsg] = React.useState(false);
+  const [timer, setTimer] = React.useState(maxWork);
+  const [isWork, setIsWork] = React.useState(true);
+  const [value, setValue] = React.useState(false);
+  let interval: NodeJS.Timeout;
   React.useEffect(() => {
-    const interval = setInterval(() => {
-      clearInterval(interval);
-      if (sec === 0) {
-        if (min !== 0) {
-          setSec(59);
-          setMin((o) => o - 1);
+    if (value) {
+      interval = setInterval(() => {
+        clearInterval(interval);
+        if (timer === 0) {
+          if (isWork) {
+            setIsWork(false);
+            setTimer(maxBreak);
+          } else {
+            setIsWork(true);
+            setTimer(maxWork);
+          }
         } else {
-          let min = displayMsg ? maxWork : maxBreak;
-          let sec = 0;
-          setSec(sec);
-          setMin(min);
-
-          setDisplayMsg((o) => !o);
+          setTimer(timer - 1);
         }
-      } else {
-        setSec((o) => o - 1);
-      }
-    }, 1000);
-  }, [sec]);
-
-  const displayMin = min < 10 ? `0${min}` : `${min}`;
-  const displaySec = sec < 10 ? `0${sec}` : `${sec}`;
-
+      }, 1000);
+    }
+  }, [timer, value]);
+  const displayMin =
+    Math.floor(timer / 60) < 10
+      ? `0${Math.floor(timer / 60)}`
+      : `${Math.floor(timer / 60)}`;
+  const displaySec =
+    Math.floor(timer % 60) < 10
+      ? `0${Math.floor(timer % 60)}`
+      : `${Math.floor(timer % 60)}`;
   return (
-    <div className="pomodoro">
-      <div className="message">{displayMsg && <div>{breakTimeMsg}</div>}</div>
-      <div className="timer">
-        {displayMin}:{displaySec}
+    <>
+      <button
+        onClick={() => {
+          setValue(true);
+        }}
+      >
+        START
+      </button>
+      <button
+        onClick={() => {
+          setValue(false);
+          clearInterval(interval);
+        }}
+      >
+        STOP
+      </button>
+      <button
+        onClick={() => {
+          if (isWork) {
+            clearInterval(interval);
+            setTimer(maxWork);
+          } else {
+            clearInterval(interval);
+            setTimer(maxBreak);
+          }
+        }}
+      >
+        INITIALIZE
+      </button>
+      <div className="pomodoro">
+        {isWork && (
+          <div className="timer">
+            <div className="timerMsg">{WorkTimeMsg}</div>
+            {displayMin}:{displaySec}
+          </div>
+        )}
+        {!isWork && (
+          <div className="timer">
+            <div className="timerMsg">{breakTimeMsg}</div>
+            {displayMin}:{displaySec}
+          </div>
+        )}
       </div>
-    </div>
+    </>
   );
 };
 export default Pomodoro;

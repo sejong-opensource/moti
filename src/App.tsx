@@ -1,6 +1,6 @@
 import React from "react";
-import Mail from "./page/mail/Mail";
-import Pomodoro from "./page/pomodoro/Pomodoro";
+import Mail from "./mail/Mail";
+import Pomodoro from "./pomodoro/Pomodoro";
 function App() {
   return (
     <div className="App">

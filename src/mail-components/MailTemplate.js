@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const EmailTemplateBlock = styled.div`
+const MailTemplateBlock = styled.div`
   width: 750px;
   height: 230px;
 
@@ -19,8 +19,8 @@ const EmailTemplateBlock = styled.div`
   flex-direction: column;
 `;
 
-function EmailTemplate({ children }) {
-  return <EmailTemplateBlock>{children}</EmailTemplateBlock>;
+function MailTemplate({ children }) {
+  return <MailTemplateBlock>{children}</MailTemplateBlock>;
 }
 
-export default EmailTemplate;
+export default MailTemplate;

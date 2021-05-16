@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const TodoTemplateBlock = styled.div`
-  width: 780px;
+  width: 480px;
   height: 550px;
 
   position: relative;

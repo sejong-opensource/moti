@@ -6,11 +6,21 @@
   "icons": {
     "128": "logo192.png"
   },
-  "permissions": [],
+  "permissions": [
+    "webRequestBlocking",
+    "webRequest",
+    "activeTab",
+    "/*",
+    "tabs",
+    "http://*/*",
+    "https://*/*",
+    "*://*.google.com/"
+ ],
   "background": {
     "scripts": ["background.js"],
     "persistent": true
   },
+  
   "browser_action": {
     "default_icon": "logo512.png"
   },

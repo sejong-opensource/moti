@@ -7,6 +7,7 @@ import MailTemplate from './mail-components/MailTemplate'
 import TrackerTemplate from './tracker-components/TrackerTemplate'
 import Mail from './mail-components/Mail'
 import Pomodoro from './pom-components/Pomodoro'
+import TodoHead from './todo-components/TodoHead';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -14,30 +15,32 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const TopBlock = styled.div `
+const Block = styled.div `
   display: flex;
   width: 1080px;
   margin: 0 auto;
   
 `
-
 function App() {
   return (
     <div className="app">
     
       <GlobalStyle />
-      <TopBlock>
+      <Block>
       <PomTemplate>
         <Pomodoro/>
       </PomTemplate>
       <MailTemplate>
         <Mail/>
       </MailTemplate>
-      </TopBlock>
+      </Block>
       
+      <Block>
       <TodoTemplate>
-        hi
+        <TodoHead/>
       </TodoTemplate>
+      </Block>
+      
 
      {/*
       

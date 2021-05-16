@@ -12,7 +12,7 @@ const MailTemplateBlock = styled.div`
 
   margin: 0 auto; 
   margin-left: 30px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
 `;

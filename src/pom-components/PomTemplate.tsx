@@ -11,7 +11,7 @@ const PomTemplateBlock = styled.div`
   margin: 0 auto; 
 
   margin-top: 0;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
 `;

@@ -11,10 +11,8 @@ const MailTemplateBlock = styled.div`
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.04);
 
   margin: 0 auto; 
-
-  margin-top: 26px;
   margin-left: 30px;
-  margin-bottom: 32px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
 `;

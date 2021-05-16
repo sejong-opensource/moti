@@ -35,8 +35,12 @@ function App() {
       </MailTemplate>
       </TopBlock>
       
+      <TodoTemplate>
+        hi
+      </TodoTemplate>
+
      {/*
-      <TodoTemplate></TodoTemplate>
+      
       <TrackerTemplate></TrackerTemplate>
      */}
       

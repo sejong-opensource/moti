@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Block = styled.div `
+const Block = styled.div`
   display: flex;
   width: 1080px;
   margin: 0 auto;
@@ -24,29 +24,30 @@ const Block = styled.div `
 function App() {
   return (
     <div className="app">
-    
+
       <GlobalStyle />
       <Block>
-      <PomTemplate>
-        <Pomodoro/>
-      </PomTemplate>
-      <MailTemplate>
-        <Mail/>
-      </MailTemplate>
-      </Block>
-      
-      <Block>
-      <TodoTemplate>
-        <TodoHead/>
-      </TodoTemplate>
-      </Block>
-      
+        <MailTemplate>
+          <Mail />
+        </MailTemplate>
+        <PomTemplate>
+          <Pomodoro />
+        </PomTemplate>
 
-     {/*
+      </Block>
+
+      <Block>
+        <TodoTemplate>
+          <TodoHead />
+        </TodoTemplate>
+      </Block>
+
+
+      {/*
       
       <TrackerTemplate></TrackerTemplate>
      */}
-      
+
     </div>
   );
 }

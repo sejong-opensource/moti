@@ -7,7 +7,7 @@ import MailTemplate from './mail-components/MailTemplate'
 import TrackerTemplate from './tracker-components/TrackerTemplate'
 import Mail from './mail-components/Mail'
 import Pomodoro from './pom-components/Pomodoro'
-
+import TimeTracker from './tracker-components/TimeTracker'
 const GlobalStyle = createGlobalStyle`
   body {
     background: #6c63ff;
@@ -35,10 +35,10 @@ function App() {
       </MailTemplate>
       </TopBlock>
       
-     {/*
-      <TodoTemplate></TodoTemplate>
-      <TrackerTemplate></TrackerTemplate>
-     */}
+     
+      {/* <TodoTemplate></TodoTemplate> */}
+      <TrackerTemplate><TimeTracker/></TrackerTemplate>
+     
       
     </div>
   );

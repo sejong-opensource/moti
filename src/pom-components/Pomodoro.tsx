@@ -1,15 +1,24 @@
 import React from "react";
-import "./Pomodoro.css";
+import PopupSetting from "./PopupSetting";
+import { userInfo } from "./user";
 const breakTimeMsg = "Break Time! New session starts in :";
 const WorkTimeMsg = "I'm Focus in Work";
-const maxWork = 5;
-const maxBreak = 5;
+
 const Pomodoro = () => {
+  let maxWork = userInfo.workTime;
+  let maxBreak = userInfo.breakTime;
   const [timer, setTimer] = React.useState(maxWork);
   const [isWork, setIsWork] = React.useState(true);
   const [value, setValue] = React.useState(false);
+  const [setPomo, isSetPomo] = React.useState(false);
+  const reload = () => {
+    isSetPomo(o => !o);
+  };
+
   let interval: NodeJS.Timeout;
   React.useEffect(() => {
+    maxWork = userInfo.workTime;
+    maxBreak = userInfo.breakTime;
     if (value) {
       interval = setInterval(() => {
         clearInterval(interval);
@@ -26,15 +35,11 @@ const Pomodoro = () => {
         }
       }, 1000);
     }
-  }, [timer, value]);
+  }, [timer, value, setPomo]);
   const displayMin =
-    Math.floor(timer / 60) < 10
-      ? `0${Math.floor(timer / 60)}`
-      : `${Math.floor(timer / 60)}`;
+    Math.floor(timer / 60) < 10 ? `0${Math.floor(timer / 60)}` : `${Math.floor(timer / 60)}`;
   const displaySec =
-    Math.floor(timer % 60) < 10
-      ? `0${Math.floor(timer % 60)}`
-      : `${Math.floor(timer % 60)}`;
+    Math.floor(timer % 60) < 10 ? `0${Math.floor(timer % 60)}` : `${Math.floor(timer % 60)}`;
   return (
     <>
       <button
@@ -65,6 +70,7 @@ const Pomodoro = () => {
       >
         INITIALIZE
       </button>
+      <PopupSetting callback={reload} />
       <div className="pomodoro">
         {isWork && (
           <div className="timer">

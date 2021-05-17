@@ -13,7 +13,7 @@ type mail = {
 const selectMail = (mail: mail) => {
   const alarmList = getAlarmList();
   let result = true;
-  alarmList.map((value) => {
+  alarmList.map(value => {
     if (mail.sender.indexOf(value)) {
       result = false;
     }
@@ -51,7 +51,7 @@ const Mail = () => {
         password: userInfo.password,
         host: userInfo.host,
       },
-    }).then((res) => {
+    }).then(res => {
       let temp = res.data.filter((mail: mail) => {
         mail.sender = extractSender(mail.sender);
         mail.date = extractDate(mail.date);
@@ -72,7 +72,6 @@ const Mail = () => {
       <PopupSetting callback={reload} />
       <button
         onClick={() => {
-          setIsMail(false);
           getMail();
         }}
       >
@@ -80,7 +79,7 @@ const Mail = () => {
       </button>
       <ul>
         {mailList
-          ? mailList.map((mail) => (
+          ? mailList.map(mail => (
               <li>
                 {mail.title} / {mail.date} / {mail.sender}
               </li>

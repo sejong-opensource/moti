@@ -25,7 +25,7 @@
      - Mod: 코드 수정
      - Rm: 기능 삭제
 
-   - 작성할 때 [category]-[message] 로 통일
+   - 작성할 때 [category] [message] 로 통일
    - commit은 하나의 의도와 의미만을 가지도록 한다
    - 영어로 작성한다
 

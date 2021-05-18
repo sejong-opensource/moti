@@ -35,10 +35,6 @@ function TodoHead() {
     let day: number = today.getDay();  // 요일
     let week = new Array('일','월','화','수','목','금','토');
 
-
-    // document.write(year + '/' + month + '/' + date)
-    // document.write('<br>')å
-    // document.write(day);
     return (
         <TodoHeadBlock>
             <h1>{year}년 {month}월 {date}일</h1>

@@ -8,6 +8,8 @@ import TrackerTemplate from './tracker-components/TrackerTemplate'
 import Mail from './mail-components/Mail'
 import Pomodoro from './pom-components/Pomodoro'
 import TodoHead from './todo-components/TodoHead';
+import TodoList from './todo-components/TodoList';
+import TodoCreate from './todo-components/TodoCreate';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -39,6 +41,8 @@ function App() {
       <Block>
         <TodoTemplate>
           <TodoHead />
+          <TodoList/>
+          <TodoCreate/>
         </TodoTemplate>
       </Block>
 

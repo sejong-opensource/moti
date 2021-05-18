@@ -5,7 +5,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const getMail_1 = require("./getMail");
 const app = express();
-const port = 3002;
+const port = 5000;
 // app.all("/*", (req, res, next) => {
 //   res.header("Access-Control-Allow-Origin", "*");
 //   res.header("Access-Control-Allow-Origin", "X-Requested-With");

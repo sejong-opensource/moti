@@ -1,9 +1,18 @@
-export const userInfo = {
+export type UserInfo = {
+  workTime: number;
+  breakTime: number;
+  routineCount: number;
+  longBreakTime: number;
+  longBreakFrequency: number;
+};
+
+export const userInfo: UserInfo = {
   // Pomodoro default setiing
-  workTime: 25,
+  workTime: 5,
   breakTime: 5,
   routineCount: 0,
   longBreakTime: 10,
+  longBreakFrequency: 1,
 };
 
 export const setWorkTime = (value: number) => {

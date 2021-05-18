@@ -1,5 +1,5 @@
 .pomodoro {
-  background-color: #1e212d;
+  background-color: #6c63ff;
   color: #e9e9e9;
   height: 100vh;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
@@ -7,10 +7,10 @@
   height: 100%;
   justify-content: center;
   align-items: center;
-  font-size: 5em;
+  font-size: 2rem;
 }
 .message {
-  font-size: 0.5em;
+  font-size: 0.5rem;
   min-height: 1.3em;
   margin-bottom: 0.5em;
 }

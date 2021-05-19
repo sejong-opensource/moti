@@ -6,15 +6,18 @@ const SettingPomo = () => {
   const breakTimeRef = React.useRef<HTMLInputElement>(null);
   const longBreakTimeRef = React.useRef<HTMLInputElement>(null);
   const longBreakFrequencyRef = React.useRef<HTMLInputElement>(null);
-
+  const autoBreakTimeRef = React.useRef<HTMLInputElement>(null);
   const [userInfo, setUserInfo] = React.useState<user.UserInfo>(user.userInfo);
+
+  const [isAuto, setIsAuto] = React.useState(userInfo.autoBreakTime);
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (
       workTimeRef.current &&
       breakTimeRef.current &&
       longBreakTimeRef.current &&
-      longBreakFrequencyRef.current
+      longBreakFrequencyRef.current &&
+      autoBreakTimeRef.current
     ) {
       user.userInfo.workTime = Number(workTimeRef.current.value);
       user.userInfo.breakTime = Number(breakTimeRef.current.value);
@@ -22,6 +25,8 @@ const SettingPomo = () => {
       user.userInfo.longBreakFrequency = Number(
         longBreakFrequencyRef.current.value
       );
+      userInfo.autoBreakTime = Boolean(autoBreakTimeRef.current.checked);
+      console.log(Boolean(autoBreakTimeRef.current.checked));
       setUserInfo(user.userInfo);
     }
   };
@@ -41,6 +46,7 @@ const SettingPomo = () => {
                 ref={workTimeRef}
                 defaultValue={String(userInfo.workTime)}
               />
+              분
             </label>
           </li>
           <li>
@@ -50,6 +56,7 @@ const SettingPomo = () => {
                 ref={breakTimeRef}
                 defaultValue={String(userInfo.breakTime)}
               />
+              분
             </label>
           </li>
 
@@ -60,15 +67,31 @@ const SettingPomo = () => {
                 ref={longBreakTimeRef}
                 defaultValue={String(userInfo.longBreakTime)}
               />
+              분
             </label>
           </li>
           <li>
             <label>
-              몇 번의 집중시간 이후 긴 휴식을 가지시겠습니까? :{" "}
+              몇 회의 루틴 이후 긴 휴식을 가지시겠습니까? :{" "}
               <input
                 ref={longBreakFrequencyRef}
                 defaultValue={String(userInfo.longBreakFrequency)}
               />
+              회
+            </label>
+          </li>
+          <li>
+            <label>
+              집중시간 이후 자동으로 휴식시간을 가지겠습니까? :{" "}
+              <input
+                type="checkbox"
+                ref={autoBreakTimeRef}
+                checked={isAuto}
+                onChange={() => {
+                  setIsAuto((o) => !o);
+                }}
+              />
+              {isAuto ? "예" : "아니오"}
             </label>
           </li>
           <li>

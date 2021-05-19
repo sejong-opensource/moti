@@ -1,8 +1,8 @@
 import React from "react";
 import PopupSetting from "./PopupSetting";
 import { userInfo, setRoutineCount } from "./user";
-const breakTimeMsg = "Break Time! New session starts in :";
-const WorkTimeMsg = "I'm Focus in Work";
+const breakTimeMsg = "쉬는시간 입니다.";
+const WorkTimeMsg = "집중시간하는 시간입니다.";
 
 // Todo
 // Setting에 따른 Interval 로직 변경
@@ -14,15 +14,25 @@ const Pomodoro = () => {
   const [isWork, setIsWork] = React.useState(true);
   const [isRun, setIsRun] = React.useState(false);
   const [setPomo, isSetPomo] = React.useState(false);
+  let interval: NodeJS.Timeout;
   const reload = () => {
     isSetPomo((o) => !o);
-    setTimer(userInfo.workTime);
+    if (isWork) {
+      setTimer(userInfo.workTime);
+    } else {
+      setTimer(userInfo.breakTime);
+    }
+    setIsRun((o) => !o);
+    clearInterval(interval);
+    console.log("et");
   };
-
-  let interval: NodeJS.Timeout;
   const alarm = (msg: string) => {
+    if (isWork) {
+      new Notification("수고하셨습니다!!!", { body: msg });
+    } else {
+      new Notification("이제 다시 시작해볼까요???", { body: msg });
+    }
     // var notification = new Notification('할 일 목록', { body: text, icon: img });
-    new Notification("Pomodoro", { body: msg });
   };
   React.useEffect(() => {
     if (Notification.permission === "granted") {
@@ -32,9 +42,19 @@ const Pomodoro = () => {
           clearInterval(interval);
           if (timer === 0) {
             if (isWork) {
+              if (!userInfo.autoBreakTime) {
+                clearInterval(interval);
+                setIsRun(false);
+                setTimer(userInfo.workTime);
+                clearInterval(interval);
+              }
               setIsWork(false);
               setRoutineCount();
-              setTimer(userInfo.breakTime);
+              if (userInfo.routineCount % userInfo.longBreakFrequency == 0) {
+                setTimer(userInfo.longBreakTime);
+              } else {
+                setTimer(userInfo.breakTime);
+              }
               alarm(
                 `수고하셨습니다. ${userInfo.breakTime}분 동안 휴식시간 입니다`
               );
@@ -67,7 +87,7 @@ const Pomodoro = () => {
           setIsRun(true);
         }}
       >
-        START
+        시작
       </button>
       <button
         onClick={() => {
@@ -75,7 +95,7 @@ const Pomodoro = () => {
           clearInterval(interval);
         }}
       >
-        STOP
+        정지
       </button>
       <button
         onClick={() => {
@@ -89,7 +109,7 @@ const Pomodoro = () => {
           }
         }}
       >
-        INITIALIZE
+        시간 초기화
       </button>
       <PopupSetting callback={reload} />
       <div className="pomodoro">

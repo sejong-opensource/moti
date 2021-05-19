@@ -1,74 +1,115 @@
 import React from "react";
 import PopupSetting from "./PopupSetting";
-import { userInfo } from "./user";
-const breakTimeMsg = "Break Time! New session starts in :";
-const WorkTimeMsg = "I'm Focus in Work";
+import { userInfo, setRoutineCount } from "./user";
+const breakTimeMsg = "쉬는시간 입니다.";
+const WorkTimeMsg = "집중시간하는 시간입니다.";
 
+// Todo
+// Setting에 따른 Interval 로직 변경
 const Pomodoro = () => {
-  let maxWork = userInfo.workTime;
-  let maxBreak = userInfo.breakTime;
-  const [timer, setTimer] = React.useState(maxWork);
-  const [isWork, setIsWork] = React.useState(true);
-  const [value, setValue] = React.useState(false);
-  const [setPomo, isSetPomo] = React.useState(false);
-  const reload = () => {
-    isSetPomo(o => !o);
-  };
+  // let maxWork = userInfo.workTime * 60;
+  // let maxBreak = userInfo.breakTime * 60;
 
+  const [timer, setTimer] = React.useState(userInfo.workTime);
+  const [isWork, setIsWork] = React.useState(true);
+  const [isRun, setIsRun] = React.useState(false);
+  const [setPomo, isSetPomo] = React.useState(false);
   let interval: NodeJS.Timeout;
-  React.useEffect(() => {
-    maxWork = userInfo.workTime;
-    maxBreak = userInfo.breakTime;
-    if (value) {
-      interval = setInterval(() => {
-        clearInterval(interval);
-        if (timer === 0) {
-          if (isWork) {
-            setIsWork(false);
-            setTimer(maxBreak);
-          } else {
-            setIsWork(true);
-            setTimer(maxWork);
-          }
-        } else {
-          setTimer(timer - 1);
-        }
-      }, 1000);
+  const reload = () => {
+    isSetPomo((o) => !o);
+    if (isWork) {
+      setTimer(userInfo.workTime);
+    } else {
+      setTimer(userInfo.breakTime);
     }
-  }, [timer, value, setPomo]);
+    setIsRun((o) => !o);
+    clearInterval(interval);
+    console.log("et");
+  };
+  const alarm = (msg: string) => {
+    if (isWork) {
+      new Notification("수고하셨습니다!!!", { body: msg });
+    } else {
+      new Notification("이제 다시 시작해볼까요???", { body: msg });
+    }
+    // var notification = new Notification('할 일 목록', { body: text, icon: img });
+  };
+  React.useEffect(() => {
+    if (Notification.permission === "granted") {
+      if (isRun) {
+        clearInterval(interval);
+        interval = setInterval(() => {
+          clearInterval(interval);
+          if (timer === 0) {
+            if (isWork) {
+              if (!userInfo.autoBreakTime) {
+                clearInterval(interval);
+                setIsRun(false);
+                setTimer(userInfo.workTime);
+                clearInterval(interval);
+              }
+              setIsWork(false);
+              setRoutineCount();
+              if (userInfo.routineCount % userInfo.longBreakFrequency == 0) {
+                setTimer(userInfo.longBreakTime);
+              } else {
+                setTimer(userInfo.breakTime);
+              }
+              alarm(
+                `수고하셨습니다. ${userInfo.breakTime}분 동안 휴식시간 입니다`
+              );
+            } else {
+              setIsWork(true);
+              setTimer(userInfo.workTime);
+              alarm(`이제 ${userInfo.breakTime}분 동안  집중시간 입니다`);
+            }
+          } else {
+            setTimer(timer - 1);
+          }
+        }, 1000);
+      }
+    } else {
+      Notification.requestPermission();
+    }
+  }, [timer, isRun, setPomo]);
   const displayMin =
-    Math.floor(timer / 60) < 10 ? `0${Math.floor(timer / 60)}` : `${Math.floor(timer / 60)}`;
+    Math.floor(timer / 60) < 10
+      ? `0${Math.floor(timer / 60)}`
+      : `${Math.floor(timer / 60)}`;
   const displaySec =
-    Math.floor(timer % 60) < 10 ? `0${Math.floor(timer % 60)}` : `${Math.floor(timer % 60)}`;
+    Math.floor(timer % 60) < 10
+      ? `0${Math.floor(timer % 60)}`
+      : `${Math.floor(timer % 60)}`;
   return (
     <>
       <button
         onClick={() => {
-          setValue(true);
+          setIsRun(true);
         }}
       >
-        START
+        시작
       </button>
       <button
         onClick={() => {
-          setValue(false);
+          setIsRun(false);
           clearInterval(interval);
         }}
       >
-        STOP
+        정지
       </button>
       <button
         onClick={() => {
+          setRoutineCount(0);
           if (isWork) {
             clearInterval(interval);
-            setTimer(maxWork);
+            setTimer(userInfo.workTime);
           } else {
             clearInterval(interval);
-            setTimer(maxBreak);
+            setTimer(userInfo.breakTime);
           }
         }}
       >
-        INITIALIZE
+        시간 초기화
       </button>
       <PopupSetting callback={reload} />
       <div className="pomodoro">
@@ -84,6 +125,7 @@ const Pomodoro = () => {
             {displayMin}:{displaySec}
           </div>
         )}
+        <h4>총 {userInfo.routineCount}회 루틴 진행</h4>
       </div>
     </>
   );

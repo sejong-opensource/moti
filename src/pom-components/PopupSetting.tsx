@@ -3,6 +3,8 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import React from "react";
 import SettingPomo from "./SettingPomo";
+// Todo set Min*60 -> sec
+
 type Prop = {
   callback: () => void;
 };
@@ -15,11 +17,11 @@ const PopupSetting = (prop: Prop) => {
         type="button"
         className="button"
         onClick={() => {
-          setOpen(current => !current);
+          setOpen((current) => !current);
           prop.callback();
         }}
       >
-        SETTING
+        설정
       </button>
       <Popup open={open} closeOnDocumentClick onClose={() => setOpen(false)}>
         <div className="modal-setting">
@@ -32,7 +34,7 @@ const PopupSetting = (prop: Prop) => {
               prop.callback();
             }}
           >
-            close
+            닫기
           </button>
         </div>
       </Popup>

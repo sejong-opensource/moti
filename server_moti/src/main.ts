@@ -3,7 +3,7 @@ import * as cors from "cors";
 import * as bodyParser from "body-parser";
 import { getMail } from "./getMail";
 const app = express();
-const port = 3002;
+const port = 5000;
 
 // app.all("/*", (req, res, next) => {
 //   res.header("Access-Control-Allow-Origin", "*");

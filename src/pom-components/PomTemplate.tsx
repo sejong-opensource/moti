@@ -3,17 +3,15 @@ import styled from 'styled-components';
 
 const PomTemplateBlock = styled.div`
   width: 300px;
-  height: 230px;
+  height: 150px;
 
   position: relative;
-  background: white;
   border-radius: 16px;
-  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.04);
 
   margin: 0 auto; 
 
-  margin-top: 26px;
-  margin-bottom: 32px;
+  margin-top: 0;
+  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
 `;

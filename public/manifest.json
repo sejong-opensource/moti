@@ -6,7 +6,7 @@
   "icons": {
     "128": "logo192.png"
   },
-  "permissions": ["alarm"],
+  "permissions": ["alarms"],
   "background": {
     "scripts": ["background.js"],
     "persistent": true

@@ -1,4 +1,3 @@
-/*global chrome*/
 import React from "react";
 import PopupSetting from "./PopupSetting";
 import { userInfo, setRoutineCount } from "./user";
@@ -22,29 +21,35 @@ const Pomodoro = () => {
 
   let interval: NodeJS.Timeout;
   const alarm = (msg: string) => {
-    chrome.alarms.create(msg, { delayInMinutes: 3 });
+    // var notification = new Notification('할 일 목록', { body: text, icon: img });
+    new Notification("Pomodoro", { body: msg });
   };
   React.useEffect(() => {
-    if (isRun) {
-      clearInterval(interval);
-      interval = setInterval(() => {
+    if (Notification.permission === "granted") {
+      if (isRun) {
         clearInterval(interval);
-        if (timer === 0) {
-          if (isWork) {
-            setIsWork(false);
-            setRoutineCount();
-            console.log(userInfo.routineCount);
-            setTimer(userInfo.breakTime);
-            alarm(`수고하셨습니다. ${userInfo.breakTime}동안 휴식시간 입니다`);
+        interval = setInterval(() => {
+          clearInterval(interval);
+          if (timer === 0) {
+            if (isWork) {
+              setIsWork(false);
+              setRoutineCount();
+              setTimer(userInfo.breakTime);
+              alarm(
+                `수고하셨습니다. ${userInfo.breakTime}분 동안 휴식시간 입니다`
+              );
+            } else {
+              setIsWork(true);
+              setTimer(userInfo.workTime);
+              alarm(`이제 ${userInfo.breakTime}분 동안  집중시간 입니다`);
+            }
           } else {
-            setIsWork(true);
-            setTimer(userInfo.workTime);
-            alert(`이제 ${userInfo.breakTime}동안  집중시간 입니다`);
+            setTimer(timer - 1);
           }
-        } else {
-          setTimer(timer - 1);
-        }
-      }, 1000);
+        }, 1000);
+      }
+    } else {
+      Notification.requestPermission();
     }
   }, [timer, isRun, setPomo]);
   const displayMin =

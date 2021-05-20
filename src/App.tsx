@@ -10,10 +10,16 @@ import Pomodoro from './pom-components/Pomodoro'
 import TodoHead from './todo-components/TodoHead';
 import TodoList from './todo-components/TodoList';
 import TodoCreate from './todo-components/TodoCreate';
+import img from './assets/2.png';
 
 const GlobalStyle = createGlobalStyle`
   body {
-    background: #6c63ff;
+    border: 0;
+    padding: 0; 
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(${img});
+    min-height: 100%;
   }
 `;
 

@@ -1,6 +1,8 @@
 import React from "react";
 import PopupSetting from "./PopupSetting";
 import { userInfo, setRoutineCount } from "./user";
+import Toggle from "./Toggle";
+
 const breakTimeMsg = "쉬는시간 입니다.";
 const WorkTimeMsg = "집중시간하는 시간입니다.";
 
@@ -15,6 +17,12 @@ const Pomodoro = () => {
   const [isRun, setIsRun] = React.useState(false);
   const [setPomo, isSetPomo] = React.useState(false);
   let interval: NodeJS.Timeout;
+  const onClickToggle = (val: boolean) => {
+    setIsRun(val);
+    if (val === false) {
+      clearInterval(interval);
+    }
+  };
   const reload = () => {
     isSetPomo((o) => !o);
     if (isWork) {
@@ -24,7 +32,6 @@ const Pomodoro = () => {
     }
     setIsRun((o) => !o);
     clearInterval(interval);
-    console.log("et");
   };
   const alarm = (msg: string) => {
     if (isWork) {
@@ -82,21 +89,7 @@ const Pomodoro = () => {
       : `${Math.floor(timer % 60)}`;
   return (
     <>
-      <button
-        onClick={() => {
-          setIsRun(true);
-        }}
-      >
-        시작
-      </button>
-      <button
-        onClick={() => {
-          setIsRun(false);
-          clearInterval(interval);
-        }}
-      >
-        정지
-      </button>
+      <Toggle onClick={onClickToggle} />
       <button
         onClick={() => {
           setRoutineCount(0);

@@ -9,7 +9,7 @@ export type UserInfo = {
 
 export const userInfo: UserInfo = {
   // Pomodoro default setiing
-  workTime: 10,
+  workTime: 5,
   breakTime: 5,
   routineCount: 0,
   longBreakTime: 10,

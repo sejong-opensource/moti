@@ -10,7 +10,7 @@ import Pomodoro from './pom-components/Pomodoro'
 import TodoHead from './todo-components/TodoHead';
 import TodoList from './todo-components/TodoList';
 import TodoCreate from './todo-components/TodoCreate';
-import img from './assets/2.png';
+import img from './assets/3.jpg';
 
 const GlobalStyle = createGlobalStyle`
   body {

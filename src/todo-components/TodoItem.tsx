@@ -38,30 +38,19 @@ const CheckCircle = styled.div`
   justify-content: center;
   margin-right: 20px;
   cursor: pointer;
-  ${props =>
-    props.done &&
-    css`
-      border: 1px solid #6c63ff;
-      color: #6c63ff;
-    `}
 `;
 
 const Text = styled.div`
   flex: 1;
   font-size: 21px;
   color: #495057;
-  ${props =>
-    props.done &&
-    css`
-      color: #ced4da;
-    `}
 `;
 
 function TodoItem({ id, done, text }) {
   return (
     <TodoItemBlock>
-      <CheckCircle done={done}>{done && <MdDone />}</CheckCircle>
-      <Text done={done}>{text}</Text>
+      <CheckCircle ><MdDone/></CheckCircle>
+      <Text>{text}</Text>
       <Remove>
         <MdDelete />
       </Remove>

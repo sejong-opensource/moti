@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { Children, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { MdAdd } from 'react-icons/md';
 
+type props = {
+name: string;
+  open:boolean;
+}
 const CircleButton = styled.button`
   background: #6c63ff;
   &:hover {
@@ -33,7 +37,7 @@ const CircleButton = styled.button`
 
   transition: 0.125s all ease-in;
   ${props =>
-    props.open &&
+    props &&
     css`
       background: #ff6b6b;
       &:hover {
@@ -89,7 +93,7 @@ function TodoCreate() {
           </InsertForm>
         </InsertFormPositioner>
       )}
-      <CircleButton onClick={onToggle} open={open}>
+      <CircleButton onClick={onToggle} >
         <MdAdd />
       </CircleButton>
     </>

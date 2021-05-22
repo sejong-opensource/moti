@@ -7,7 +7,6 @@ const breakTimeMsg = "쉬는시간 입니다.";
 const WorkTimeMsg = "집중시간하는 시간입니다.";
 
 // Todo
-// Setting에 따른 Interval 로직 변경
 const Pomodoro = () => {
   // let maxWork = userInfo.workTime * 60;
   // let maxBreak = userInfo.breakTime * 60;
@@ -24,13 +23,13 @@ const Pomodoro = () => {
     }
   };
   const reload = () => {
-    isSetPomo((o) => !o);
+    isSetPomo(o => !o);
     if (isWork) {
       setTimer(userInfo.workTime);
     } else {
       setTimer(userInfo.breakTime);
     }
-    setIsRun((o) => !o);
+    setIsRun(o => !o);
     clearInterval(interval);
   };
   const alarm = (msg: string) => {
@@ -62,9 +61,7 @@ const Pomodoro = () => {
               } else {
                 setTimer(userInfo.breakTime);
               }
-              alarm(
-                `수고하셨습니다. ${userInfo.breakTime}분 동안 휴식시간 입니다`
-              );
+              alarm(`수고하셨습니다. ${userInfo.breakTime}분 동안 휴식시간 입니다`);
             } else {
               setIsWork(true);
               setTimer(userInfo.workTime);
@@ -80,16 +77,22 @@ const Pomodoro = () => {
     }
   }, [timer, isRun, setPomo]);
   const displayMin =
-    Math.floor(timer / 60) < 10
-      ? `0${Math.floor(timer / 60)}`
-      : `${Math.floor(timer / 60)}`;
+    Math.floor(timer / 60) < 10 ? `0${Math.floor(timer / 60)}` : `${Math.floor(timer / 60)}`;
   const displaySec =
-    Math.floor(timer % 60) < 10
-      ? `0${Math.floor(timer % 60)}`
-      : `${Math.floor(timer % 60)}`;
+    Math.floor(timer % 60) < 10 ? `0${Math.floor(timer % 60)}` : `${Math.floor(timer % 60)}`;
   return (
     <>
-      <Toggle onClick={onClickToggle} />
+      {/* <Toggle onClick={onClickToggle} /> */}
+      <button
+        onClick={() => {
+          setIsRun(o => !o);
+          if (isRun === false) {
+            clearInterval(interval);
+          }
+        }}
+      >
+        {isRun ? "정지" : "시작"}
+      </button>
       <button
         onClick={() => {
           setRoutineCount(0);

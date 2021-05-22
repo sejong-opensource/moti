@@ -53,7 +53,7 @@ const Toggle = ({ onClick }: { onClick: (boolean) => void }) => {
         <CheckBox
           type="checkbox"
           id="checkbox"
-          onChange={(e) => {
+          onChange={e => {
             onClick(e.currentTarget.checked);
           }}
         />

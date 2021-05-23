@@ -14,7 +14,11 @@ const SettingMail = () => {
     if (emailRef.current && passwordRef.current && hostRef.current) {
       email = emailRef.current.value;
       password = passwordRef.current.value;
-      host = hostRef.current.value;
+      if (hostRef.current.value === "gmail") {
+        host = "imap.gmail.com";
+      } else {
+        host = "imap.naver.com";
+      }
     }
     user.setUserInfo(email, password, host);
   };
@@ -23,40 +27,52 @@ const SettingMail = () => {
   }, [isAlarm]);
   return (
     <div>
-      <form
-        onSubmit={(event) => {
-          onSubmit(event);
-        }}
-      >
-        <label>
-          Email : <input ref={emailRef} />
-        </label>
-        <label>
-          Password : <input ref={passwordRef} />
-        </label>
-        <label>
-          Host : <input ref={hostRef} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-          if (alarmRef.current) {
-            user.setAlarmList(alarmRef.current.value);
-            alarmRef.current.value = "";
-          }
-          setAlarmList(user.getAlarmList());
-          setIsAlarm((o) => !o);
-          console.log(alarmList);
-        }}
-      >
-        <label>
-          AlarmList : <input ref={alarmRef} />
-        </label>
-        <ul>{alarmList ? alarmList.map((value) => <li>{value}</li>) : null}</ul>
-        <input type="submit" value="Register" />
-      </form>
+      <div>
+        <form
+          onSubmit={event => {
+            onSubmit(event);
+          }}
+        >
+          <label>
+            Email : <input ref={emailRef} />
+          </label>
+          <label>
+            Password : <input ref={passwordRef} />
+          </label>
+          <label>
+            Host : <input ref={hostRef} />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+      <div>
+        <form
+          onSubmit={event => {
+            event.preventDefault();
+            if (alarmRef.current) {
+              user.setAlarmList(alarmRef.current.value);
+              alarmRef.current.value = "";
+            }
+            setAlarmList(user.getAlarmList());
+            setIsAlarm(o => !o);
+          }}
+        >
+          <label>
+            AlarmList : <input ref={alarmRef} />
+          </label>
+          <ul>{alarmList ? alarmList.map(value => <li>{value}</li>) : null}</ul>
+          <button
+            onClick={e => {
+              e.preventDefault();
+              user.removeAlarmList();
+              setAlarmList(user.getAlarmList());
+            }}
+          >
+            모두 삭제
+          </button>
+          <input type="submit" value="등록" />
+        </form>
+      </div>
     </div>
   );
 };

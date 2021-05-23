@@ -19,38 +19,56 @@ const GlobalStyle = createGlobalStyle`
     background-repeat: no-repeat;
     background-size: cover;
     background-image: url(${img});
-    min-height: 100%;
+    min-height: 100vh;
+   
   }
 `;
+const Container = styled.div`
+ display: flex;
+    flex-direction: row;
+`
 
-const Block = styled.div`
+const BlockLeft = styled.div`
   display: flex;
+  min-height: 90vh;
   width: 1080px;
-  margin: 0 auto;
+  margin-left: 3rem;
   
+`
+
+const BlockRight = styled.div`
+  display: flex;
+  min-height: 20vh;
+  width: 1080px;
+  flex-direction: column;
 `
 function App() {
   return (
     <div className="app">
 
       <GlobalStyle />
-      <Block>
-        <MailTemplate>
-          <Mail />
-        </MailTemplate>
-        <PomTemplate>
-          <Pomodoro />
-        </PomTemplate>
-
-      </Block>
-
-      <Block>
+      <Container>
+      <BlockLeft>
         <TodoTemplate>
           <TodoHead />
           <TodoList/>
           <TodoCreate/>
         </TodoTemplate>
-      </Block>
+      </BlockLeft>
+
+      <BlockRight>
+        <PomTemplate>
+          <Pomodoro />
+        </PomTemplate>
+
+        <MailTemplate>
+          <Mail />
+        </MailTemplate>
+      </BlockRight>
+
+      </Container>
+   
+      
 
 
       {/*

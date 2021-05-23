@@ -1,5 +1,6 @@
 import React, { useReducer, createContext, useContext, useRef ,Dispatch} from 'react';
 
+
 type State = any;
 
   type SampleDispatch = Dispatch<Action>;
@@ -47,7 +48,7 @@ function todoReducer(state, action) {
 }
 
 const TodoStateContext = createContext<State | null>(null);
-const TodoDispatchContext = createContext<SampleDispatch | null>(null);
+const TodoDispatchContext = createContext<State | null>(null);
 const TodoNextIdContext = createContext<State | null>(null);
 
 export function TodoProvider({ children }: { children: React.ReactNode}) {

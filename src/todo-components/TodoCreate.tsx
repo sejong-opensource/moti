@@ -75,7 +75,7 @@ const Input = styled.input`
   box-sizing: border-box;
 `;
 
-function TodoCreate() {
+const TodoCreate = ()=> {
   const [open, setOpen] = useState(false);
 
   const onToggle = () => setOpen(!open);

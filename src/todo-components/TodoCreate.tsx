@@ -3,12 +3,12 @@ import styled, { css } from 'styled-components';
 import { MdAdd } from 'react-icons/md';
 
 const CircleButton = styled.button`
-  background: #38d9a9;
+  background: #6c63ff;
   &:hover {
-    background: #63e6be;
+    background: #6c63ff;
   }
   &:active {
-    background: #20c997;
+    background: #6c63ff;
   }
 
   z-index: 5;

@@ -11,13 +11,17 @@ type MailType = {
 };
 
 const selectMail = (mail: MailType) => {
+  let result = false;
   const alarmList = getAlarmList();
-  alarmList.map(value => {
-    if (mail.sender.indexOf(value)) {
-      return false;
+  console.log(alarmList);
+  alarmList.map((value) => {
+    console.log("[sender]", mail.sender);
+    if (mail.sender.indexOf(value) > 0) {
+      console.log("[result]", mail.sender.indexOf(value));
+      result = true;
     }
   });
-  return true;
+  return result;
 };
 const extractSender = (email: string) => {
   const start = email.indexOf("<");
@@ -50,7 +54,7 @@ const Mail = () => {
         password: userInfo.password,
         host: userInfo.host,
       },
-    }).then(res => {
+    }).then((res) => {
       let temp: MailType[] = res.data.filter((mail: MailType) => {
         mail.sender = extractSender(mail.sender);
         return selectMail(mail);
@@ -64,7 +68,7 @@ const Mail = () => {
         }
         return 0;
       });
-      temp.map(mail => {
+      temp.map((mail) => {
         mail.date = extractDate(mail.date);
       });
       setMailList(temp);
@@ -85,11 +89,11 @@ const Mail = () => {
           getMail();
         }}
       >
-        GET EMAIL
+        새로고침
       </button>
       <ul>
         {mailList
-          ? mailList.map(mail => (
+          ? mailList.map((mail) => (
               <li>
                 {mail.title} / {mail.date} / {mail.sender}
               </li>

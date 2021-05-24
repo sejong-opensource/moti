@@ -17,7 +17,7 @@ const PopupSetting = (prop: Prop) => {
         className="button"
         onClick={() => setOpen((current) => !current)}
       >
-        Setting
+        설정
       </button>
       <Popup open={open} closeOnDocumentClick onClose={() => setOpen(false)}>
         <div className="modal-setting">
@@ -30,7 +30,7 @@ const PopupSetting = (prop: Prop) => {
               prop.callback();
             }}
           >
-            close
+            닫기
           </button>
         </div>
       </Popup>

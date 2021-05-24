@@ -6,7 +6,7 @@ export const getAlarmList = () => {
   }
   return alarmList;
 };
-export const setAlarmList = (value: string) => {
+export const addAlarmList = (value: string) => {
   const current = localStorage.getItem("mailInfo.alarmList");
   let alarmList = [];
   if (current) {
@@ -15,9 +15,17 @@ export const setAlarmList = (value: string) => {
   alarmList.push(value);
   localStorage.setItem("mailInfo.alarmList", JSON.stringify(alarmList));
 };
+export const setAlarmList = (alarmList: string[]) => {
+  if (typeof alarmList === typeof "string") {
+    localStorage.setItem("mailInfo.alarmList", JSON.stringify([alarmList]));
+  } else {
+    localStorage.setItem("mailInfo.alarmList", JSON.stringify(alarmList));
+  }
+};
 export const removeAlarmList = () => {
   localStorage.removeItem("mailInfo.alarmList");
 };
+
 export const getUserInfo = () => {
   const email = localStorage.getItem("mailInfo.email");
   const password = localStorage.getItem("mailInfo.password");

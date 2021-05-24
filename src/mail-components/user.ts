@@ -25,6 +25,7 @@ export const setAlarmList = (alarmList: string[]) => {
 export const removeAlarmList = () => {
   localStorage.removeItem("mailInfo.alarmList");
 };
+
 export const getUserInfo = () => {
   const email = localStorage.getItem("mailInfo.email");
   const password = localStorage.getItem("mailInfo.password");

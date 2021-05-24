@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 const MailTemplateBlock = styled.div`
   width: 700px;
-  height: 150px;
 
   position: relative;
   background: white;

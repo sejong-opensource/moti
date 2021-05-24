@@ -10,6 +10,8 @@ import Pomodoro from './pom-components/Pomodoro'
 import TodoHead from './todo-components/TodoHead';
 import TodoList from './todo-components/TodoList';
 import TodoCreate from './todo-components/TodoCreate';
+import { TodoProvider } from './todo-components/TodoContext';
+
 import img from './assets/3.jpg';
 
 const GlobalStyle = createGlobalStyle`
@@ -19,39 +21,54 @@ const GlobalStyle = createGlobalStyle`
     background-repeat: no-repeat;
     background-size: cover;
     background-image: url(${img});
-    min-height: 100%;
+    min-height: 100vh;
+   
   }
 `;
+const Container = styled.div`
+ display: flex;
+    flex-direction: row;
+`
 
-const Block = styled.div`
+const BlockLeft = styled.div`
   display: flex;
+  min-height: 90vh;
   width: 1080px;
-  margin: 0 auto;
+  margin-left: 3rem;
   
+`
+
+const BlockRight = styled.div`
+  display: flex;
+  min-height: 20vh;
+  width: 1080px;
+  flex-direction: column;
 `
 function App() {
   return (
     <div className="app">
+      <TodoProvider>
+        <GlobalStyle />
+        <Container>
+        <BlockLeft>
+          <TodoTemplate>
+            <TodoHead />
+            <TodoList/>
+            <TodoCreate/>
+          </TodoTemplate>
+        </BlockLeft>
 
-      <GlobalStyle />
-      <Block>
-        <MailTemplate>
-          <Mail />
-        </MailTemplate>
-        <PomTemplate>
-          <Pomodoro />
-        </PomTemplate>
+        <BlockRight>
+          <PomTemplate>
+            <Pomodoro />
+          </PomTemplate>
 
-      </Block>
-
-      <Block>
-        <TodoTemplate>
-          <TodoHead />
-          <TodoList/>
-          <TodoCreate/>
-        </TodoTemplate>
-      </Block>
-
+          <MailTemplate>
+            <Mail />
+          </MailTemplate>
+        </BlockRight>
+        </Container>
+      </TodoProvider>
 
       {/*
       

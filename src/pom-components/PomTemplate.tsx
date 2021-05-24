@@ -6,6 +6,7 @@ const PomTemplateBlock = styled.div`
   background: white;
   position: relative;
   border-radius: 16px;
+  opacity: 0.7;
 
   margin: 0 auto; 
 

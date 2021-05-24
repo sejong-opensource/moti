@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const TrackerTemplateBlock = styled.div`
   width: 1080px;
-  height: 200px;
 
   position: relative;
   background: white;

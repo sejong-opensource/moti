@@ -1,0 +1,101 @@
+[33mcommit e6f03616e7eeab94255c5f70980e4510570c6203[m[33m ([m[1;36mHEAD -> [m[1;32mNew/add-timetracker-service[m[33m)[m
+Author: Mixdogg <jjm6564@naver.com>
+Date:   Fri May 14 03:55:43 2021 +0900
+
+    Add TimeTracker url input
+
+[33mcommit 9cbc73036ec44b424dfd673adc1cdde7e522f3fb[m[33m ([m[1;32mmain[m[33m)[m
+Merge: 1cf9700 1f8a137
+Author: BeADia <40654172+BeADia@users.noreply.github.com>
+Date:   Wed May 12 18:30:57 2021 +0900
+
+    Merge pull request #5 from sejong-opensource/New/add-mail-service
+    
+    New/add mail service
+
+[33mcommit 1f8a137e2993d12f2dc13c27aefad45694a7dabf[m[33m ([m[1;31morigin/New/add-mail-service[m[33m)[m
+Author: BeADia <koc0819@gmail.com>
+Date:   Wed May 12 17:38:06 2021 +0900
+
+    Add mail filter
+
+[33mcommit 43e83e2e649e8df32bbd9792bb7c80a64f67bdf8[m
+Author: BeADia <koc0819@gmail.com>
+Date:   Tue May 11 23:39:49 2021 +0900
+
+    Add email info parsing
+
+[33mcommit 526a2761172362d83fab06dfda4af8b8b899a625[m
+Author: BeADia <koc0819@gmail.com>
+Date:   Tue May 11 03:04:29 2021 +0900
+
+    Mod receive mail server's response data form
+
+[33mcommit 1cf9700df8796c3beae3c8b93b93dd3dfd77d3fb[m
+Merge: df25856 5726b85
+Author: BeADia <40654172+BeADia@users.noreply.github.com>
+Date:   Tue May 11 00:17:05 2021 +0900
+
+    Merge pull request #4 from sejong-opensource/New/add-mail-service
+    
+    Add receive mail server
+
+[33mcommit 5726b859c677c9a46106cec3e84fadfb7e1cb2e3[m
+Author: BeADia <koc0819@gmail.com>
+Date:   Mon May 10 02:17:56 2021 +0900
+
+    Add receive mail server
+
+[33mcommit df2585678f8fc80c6b9dcbf757c64e6847242120[m
+Merge: af3a395 5acabc4
+Author: BeADia <40654172+BeADia@users.noreply.github.com>
+Date:   Sun May 9 16:59:45 2021 +0900
+
+    Merge pull request #3 from sejong-opensource/New/add-mail-service
+    
+    Rm clean folder and file
+
+[33mcommit 5acabc43c2e5173ecf0acbfeed12bb0944cd924a[m
+Author: BeADia <koc0819@gmail.com>
+Date:   Sun May 9 16:16:27 2021 +0900
+
+    Rm clean folder and file
+
+[33mcommit af3a3955303b5319cf0dd3e4a9e94580e6c89135[m
+Merge: c1242f3 f5cc33b
+Author: jjm6564 <79852201+jjm6564@users.noreply.github.com>
+Date:   Sun May 9 15:54:58 2021 +0900
+
+    Merge pull request #2 from sejong-opensource/New/add-mail-service
+    
+    Add mail service
+
+[33mcommit f5cc33b8d2287045d8ff53c94197652b70d88333[m
+Author: BeADia <koc0819@gmail.com>
+Date:   Sun May 9 15:47:26 2021 +0900
+
+    Fix manifest.json
+
+[33mcommit b604ea36908e49f7dbb214e70a9ef08964bea2d6[m
+Author: BeADia <koc0819@gmail.com>
+Date:   Thu May 6 23:00:21 2021 +0900
+
+    Fix .gitignore
+
+[33mcommit c1242f327e9d24c3d5b22535105710649f24f30d[m
+Author: BeADia <koc0819@gmail.com>
+Date:   Wed May 5 21:22:12 2021 +0900
+
+    Fix .gitignore
+
+[33mcommit 563db87f9e5fca513e14feb116f8bebea0d1389b[m
+Author: BeADia <koc0819@gmail.com>
+Date:   Wed May 5 21:10:43 2021 +0900
+
+    Fix .gitignore
+
+[33mcommit bad75fb0314298c7db98ba09b8b1212af0030dc9[m
+Author: yunseo323 <jokani3244833@gmail.com>
+Date:   Wed May 5 18:34:56 2021 +0900
+
+    Add first setting

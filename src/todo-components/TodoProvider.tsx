@@ -10,22 +10,7 @@ type State = any;
 const initialTodos = [
   {
     id: 1,
-    text: '프로젝트 생성하기',
-    done: true
-  },
-  {
-    id: 2,
-    text: '컴포넌트 스타일링하기',
-    done: false
-  },
-  {
-    id: 3,
-    text: 'Context 만들기',
-    done: false
-  },
-  {
-    id: 4,
-    text: '기능 구현하기',
+    text: '하단의 버튼을 눌러 할일을 등록해보세요!',
     done: false
   }
 ];

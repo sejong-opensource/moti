@@ -29,8 +29,8 @@ const TodoItemBlock = styled.div`
 `;
 
 const CheckCircle = styled.div`
-  width: 32px;
-  height: 32px;
+  width: 25px;
+  height: 25px;
   border-radius: 16px;
   border: 1px solid #ced4da;
   font-size: 24px;
@@ -55,6 +55,8 @@ const Text = styled.div`
     props.done &&
     css`
       color: #ced4da;
+      text-decoration: line-through;
+      white-space: nowrap; //자동줄바꿈처리
     `}
 `;
 

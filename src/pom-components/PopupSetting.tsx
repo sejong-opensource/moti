@@ -8,6 +8,7 @@ import SettingPomo from "./SettingPomo";
 type Prop = {
   callback: () => void;
 };
+
 const PopupSetting = (prop: Prop) => {
   const [open, setOpen] = React.useState(false);
   const callback = () => {
@@ -24,8 +25,8 @@ const PopupSetting = (prop: Prop) => {
       >
         설정
       </button>
-      <Popup open={open} closeOnDocumentClick onClose={() => setOpen(false)}>
-        <div className="modal-setting">
+      <Popup open={open} contentStyle={{borderRadius:"1rem", minWidth:"690px"}} closeOnDocumentClick onClose={() => setOpen(false)}>
+      <div className="modal-setting">
           {/* 세팅 컴포넌트 해당 부분에 넣으면 됨 */}
           <SettingPomo callback={callback} />
           {/* <button
@@ -39,6 +40,7 @@ const PopupSetting = (prop: Prop) => {
           </button> */}
         </div>
       </Popup>
+      
     </div>
   );
 };

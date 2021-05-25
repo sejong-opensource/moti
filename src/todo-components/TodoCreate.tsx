@@ -74,6 +74,7 @@ const Input = styled.input`
   outline: none;
   font-size: 18px;
   box-sizing: border-box;
+  overflow-y:scroll;
 `;
 
 const TodoCreate = ()=> {
@@ -107,7 +108,7 @@ const TodoCreate = ()=> {
           <InsertForm onSubmit={onSubmit}>
             <Input
               autoFocus
-              placeholder="할 일을 적고, Enter 를 누르세요"
+              placeholder="할 일을 적고 Enter를 누르세요"
               onChange={onChange}
               value={value}
             />

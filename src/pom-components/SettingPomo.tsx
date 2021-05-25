@@ -1,9 +1,31 @@
 import React from "react";
 import * as user from "./user";
+import styled from "styled-components";
 
 type Prop = {
   callback: () => void;
 };
+const SettingStyle = styled.div`
+  font-size: 20px;
+  .box {
+    margin-bottom: 1rem;
+  }
+  label {
+    color: #495057;
+  }
+  input {
+    width: 2.5rem;
+    border: none;
+    border-bottom: 1px solid black;
+    text-align: center;
+    outline: none;
+    font-size: 25px;
+  }
+  input[type="submit"] {
+    font-size: 15px;
+    border: none;
+  }
+`;
 const SettingPomo = (prop: Prop) => {
   const workTimeRef = React.useRef<HTMLInputElement>(null);
   const breakTimeRef = React.useRef<HTMLInputElement>(null);
@@ -35,59 +57,59 @@ const SettingPomo = (prop: Prop) => {
 
   return (
     <div>
-      <form
-        onSubmit={event => {
-          onSubmit(event);
-          prop.callback();
-        }}
-      >
-        <ul>
-          <li>
-            <label>
-              집중시간 : <input ref={workTimeRef} defaultValue={String(userInfo.workTime)} />분
-            </label>
-          </li>
-          <li>
-            <label>
-              휴식시간 : <input ref={breakTimeRef} defaultValue={String(userInfo.breakTime)} />분
-            </label>
-          </li>
+      <SettingStyle>
+        <form
+          onSubmit={event => {
+            onSubmit(event);
+            prop.callback();
+          }}
+        >
+          <ul>
+            <div className="box">
+              <label>
+                집중시간 : <input ref={workTimeRef} defaultValue={String(userInfo.workTime)} />분
+              </label>
+            </div>
+            <div className="box">
+              <label>
+                휴식시간 : <input ref={breakTimeRef} defaultValue={String(userInfo.breakTime)} />분
+              </label>
+            </div>
+            <div className="box">
+              <label>
+                긴 휴식시간 :{" "}
+                <input ref={longBreakTimeRef} defaultValue={String(userInfo.longBreakTime)} />분
+              </label>
+            </div>
+            <div className="box">
+              <label>
+                몇번의 루틴 이후 긴 휴식을 가지시겠습니까? :{" "}
+                <input
+                  ref={longBreakFrequencyRef}
+                  defaultValue={String(userInfo.longBreakFrequency)}
+                />
+                번
+              </label>
+            </div>
+            <div className="box">
+              <label>
+                집중시간 이후 자동으로 휴식시간을 가지겠습니까? :{" "}
+                <input
+                  type="checkbox"
+                  ref={autoBreakTimeRef}
+                  checked={isAuto}
+                  onChange={() => {
+                    setIsAuto(o => !o);
+                  }}
+                />
+                {isAuto ? "예" : "아니오"}
+              </label>
+            </div>
 
-          <li>
-            <label>
-              긴 휴식시간 :{" "}
-              <input ref={longBreakTimeRef} defaultValue={String(userInfo.longBreakTime)} />분
-            </label>
-          </li>
-          <li>
-            <label>
-              몇 회의 루틴 이후 긴 휴식을 가지시겠습니까? :{" "}
-              <input
-                ref={longBreakFrequencyRef}
-                defaultValue={String(userInfo.longBreakFrequency)}
-              />
-              회
-            </label>
-          </li>
-          <li>
-            <label>
-              집중시간 이후 자동으로 휴식시간을 가지겠습니까? :{" "}
-              <input
-                type="checkbox"
-                ref={autoBreakTimeRef}
-                checked={isAuto}
-                onChange={() => {
-                  setIsAuto(o => !o);
-                }}
-              />
-              {isAuto ? "예" : "아니오"}
-            </label>
-          </li>
-          <li>
             <input type="submit" value="적용" />
-          </li>
-        </ul>
-      </form>
+          </ul>
+        </form>
+      </SettingStyle>
     </div>
   );
 };

@@ -6,7 +6,17 @@
   "icons": {
     "128": "logo192.png"
   },
-  "permissions": [],
+  "permissions": [
+    "webRequestBlocking",
+    "webRequest",
+    "activeTab",
+    "tabs",
+    "http://*/*",
+    "https://*/*",
+    "*://*.google.com/",
+    "storage",
+    "background"
+ ],
   "background": {
     "scripts": ["background.js"],
     "persistent": true

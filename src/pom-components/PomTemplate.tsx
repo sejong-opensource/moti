@@ -2,10 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 const PomTemplateBlock = styled.div`
-  width: 300px;
-
+  width: 400px;
+  background: white;
   position: relative;
   border-radius: 16px;
+  opacity: 0.7;
 
   margin: 0 auto; 
 

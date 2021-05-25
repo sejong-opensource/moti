@@ -4,10 +4,11 @@ import TodoItem from './TodoItem';
 import { useTodoState } from './TodoContext';
 
 const TodoListBlock = styled.div`
-  flex: 1; //자신이 차지할 수 있는 영역을 꽉 채움
-  padding: 20px 32px;
+  flex: 1;
+  padding: 1rem 1.5rem;
   padding-bottom: 48px;
-  overflow-y: auto;
+  min-height: 60vh;
+  
 `;
 
 function TodoList() {

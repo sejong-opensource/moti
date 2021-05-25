@@ -1,12 +1,12 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import styled from 'styled-components';
-import TodoTemplate from './todo-components/TodoTemplate';
+import Pomodoro from './pom-components/Pomodoro'
 import PomTemplate from './pom-components/PomTemplate';
 import MailTemplate from './mail-components/MailTemplate'
 import TrackerTemplate from './tracker-components/TrackerTemplate'
 import Mail from './mail-components/Mail'
-import Pomodoro from './pom-components/Pomodoro'
+import TodoTemplate from './todo-components/TodoTemplate';
 import TodoHead from './todo-components/TodoHead';
 import TodoList from './todo-components/TodoList';
 import TodoCreate from './todo-components/TodoCreate';

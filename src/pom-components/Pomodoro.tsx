@@ -105,7 +105,7 @@ const Pomodoro = () => {
           }
         }}
       >
-        시간 초기화
+        초기화
       </button>
       <PopupSetting callback={reload} />
       <div className="pomodoro">

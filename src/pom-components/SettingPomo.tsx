@@ -1,7 +1,10 @@
 import React from "react";
 import * as user from "./user";
 
-const SettingPomo = () => {
+type Prop = {
+  callback: () => void;
+};
+const SettingPomo = (prop: Prop) => {
   const workTimeRef = React.useRef<HTMLInputElement>(null);
   const breakTimeRef = React.useRef<HTMLInputElement>(null);
   const longBreakTimeRef = React.useRef<HTMLInputElement>(null);
@@ -10,6 +13,7 @@ const SettingPomo = () => {
   const [userInfo, setUserInfo] = React.useState<user.UserInfo>(user.userInfo);
 
   const [isAuto, setIsAuto] = React.useState(userInfo.autoBreakTime);
+
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (
@@ -22,9 +26,7 @@ const SettingPomo = () => {
       user.userInfo.workTime = Number(workTimeRef.current.value);
       user.userInfo.breakTime = Number(breakTimeRef.current.value);
       user.userInfo.longBreakTime = Number(longBreakTimeRef.current.value);
-      user.userInfo.longBreakFrequency = Number(
-        longBreakFrequencyRef.current.value
-      );
+      user.userInfo.longBreakFrequency = Number(longBreakFrequencyRef.current.value);
       userInfo.autoBreakTime = Boolean(autoBreakTimeRef.current.checked);
       console.log(Boolean(autoBreakTimeRef.current.checked));
       setUserInfo(user.userInfo);
@@ -34,40 +36,27 @@ const SettingPomo = () => {
   return (
     <div>
       <form
-        onSubmit={(event) => {
+        onSubmit={event => {
           onSubmit(event);
+          prop.callback();
         }}
       >
         <ul>
           <li>
             <label>
-              집중시간 :{" "}
-              <input
-                ref={workTimeRef}
-                defaultValue={String(userInfo.workTime)}
-              />
-              분
+              집중시간 : <input ref={workTimeRef} defaultValue={String(userInfo.workTime)} />분
             </label>
           </li>
           <li>
             <label>
-              휴식시간 :{" "}
-              <input
-                ref={breakTimeRef}
-                defaultValue={String(userInfo.breakTime)}
-              />
-              분
+              휴식시간 : <input ref={breakTimeRef} defaultValue={String(userInfo.breakTime)} />분
             </label>
           </li>
 
           <li>
             <label>
               긴 휴식시간 :{" "}
-              <input
-                ref={longBreakTimeRef}
-                defaultValue={String(userInfo.longBreakTime)}
-              />
-              분
+              <input ref={longBreakTimeRef} defaultValue={String(userInfo.longBreakTime)} />분
             </label>
           </li>
           <li>
@@ -88,7 +77,7 @@ const SettingPomo = () => {
                 ref={autoBreakTimeRef}
                 checked={isAuto}
                 onChange={() => {
-                  setIsAuto((o) => !o);
+                  setIsAuto(o => !o);
                 }}
               />
               {isAuto ? "예" : "아니오"}

@@ -10,15 +10,16 @@ type Prop = {
 };
 const PopupSetting = (prop: Prop) => {
   const [open, setOpen] = React.useState(false);
-
+  const callback = () => {
+    setOpen(false);
+  };
   return (
     <div>
       <button
         type="button"
         className="button"
         onClick={() => {
-          setOpen((current) => !current);
-          prop.callback();
+          setOpen(current => !current);
         }}
       >
         설정
@@ -26,8 +27,8 @@ const PopupSetting = (prop: Prop) => {
       <Popup open={open} closeOnDocumentClick onClose={() => setOpen(false)}>
         <div className="modal-setting">
           {/* 세팅 컴포넌트 해당 부분에 넣으면 됨 */}
-          <SettingPomo />
-          <button
+          <SettingPomo callback={callback} />
+          {/* <button
             className="close-button"
             onClick={() => {
               setOpen(false);
@@ -35,7 +36,7 @@ const PopupSetting = (prop: Prop) => {
             }}
           >
             닫기
-          </button>
+          </button> */}
         </div>
       </Popup>
     </div>

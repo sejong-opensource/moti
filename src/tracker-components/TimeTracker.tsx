@@ -32,12 +32,6 @@ const UserUrl =()=>{
     //   back.setItem('gggggg');
     // });
 
-    let page = chrome.extension.getBackgroundPage();
-    function onGot(page) {
-      page.foo();
-    }
-    
-    onGot("11");
   
     const onChange = (e:React.ChangeEvent<HTMLInputElement>) => {
         //localStorage.setItem("url",JSON.stringify(list));

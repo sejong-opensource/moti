@@ -11,8 +11,8 @@ import TodoHead from './todo-components/TodoHead';
 import TodoList from './todo-components/TodoList';
 import TodoCreate from './todo-components/TodoCreate';
 import { TodoProvider } from './todo-components/TodoContext';
+import TimeTracker from './tracker-components/TimeTracker'
 import img from './assets/3.jpg';
-import TimeTracker from "./timetracker/TimeTracker"
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -72,9 +72,11 @@ function App() {
 
       {/*
       
-      <TrackerTemplate></TrackerTemplate>
-     */}
-
+     
+      {/* <TodoTemplate></TodoTemplate> */}
+      <TrackerTemplate><TimeTracker/></TrackerTemplate>
+     
+      
     </div>
   );
 }

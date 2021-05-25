@@ -21,6 +21,7 @@
     "scripts": ["background.js"],
     "persistent": true
   },
+  
   "browser_action": {
     "default_icon": "logo512.png"
   },

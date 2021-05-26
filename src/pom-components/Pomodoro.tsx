@@ -62,10 +62,47 @@ const Pomodoro = () => {
                 setTimer(userInfo.breakTime);
               }
               alarm(`수고하셨습니다. ${userInfo.breakTime}분 동안 휴식시간 입니다`);
+              // alert(`수고하셨습니다. ${userInfo.breakTime}분 동안 휴식시간 입니다`);
             } else {
               setIsWork(true);
               setTimer(userInfo.workTime);
               alarm(`이제 ${userInfo.breakTime}분 동안  집중시간 입니다`);
+              // alert(`이제 ${userInfo.breakTime}분 동안  집중시간 입니다`);
+            }
+          } else {
+            setTimer(timer - 1);
+          }
+        }, 1000);
+      }
+    } else if (Notification.permission === "default") {
+      // Extension 환경에서 Notification을 지원하지 않는다.
+      Notification.requestPermission();
+      if (isRun) {
+        clearInterval(interval);
+        interval = setInterval(() => {
+          clearInterval(interval);
+          if (timer === 0) {
+            if (isWork) {
+              if (!userInfo.autoBreakTime) {
+                clearInterval(interval);
+                setIsRun(false);
+                setTimer(userInfo.workTime);
+                clearInterval(interval);
+              }
+              setIsWork(false);
+              setRoutineCount();
+              if (userInfo.routineCount % userInfo.longBreakFrequency == 0) {
+                setTimer(userInfo.longBreakTime);
+              } else {
+                setTimer(userInfo.breakTime);
+              }
+              // alarm(`수고하셨습니다. ${userInfo.breakTime}분 동안 휴식시간 입니다`);
+              alert(`수고하셨습니다. ${userInfo.breakTime}분 동안 휴식시간 입니다`);
+            } else {
+              setIsWork(true);
+              setTimer(userInfo.workTime);
+              // alarm(`이제 ${userInfo.breakTime}분 동안  집중시간 입니다`);
+              alert(`이제 ${userInfo.breakTime}분 동안  집중시간 입니다`);
             }
           } else {
             setTimer(timer - 1);

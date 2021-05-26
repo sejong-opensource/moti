@@ -35,6 +35,7 @@ const Pomodoro = () => {
             clearInterval(interval);
         }
     };
+
     const reload = () => {
         isSetPomo(o => !o);
         if (isWork) {
@@ -75,10 +76,47 @@ const Pomodoro = () => {
                                 setTimer(userInfo.breakTime);
                             }
                             alarm(`수고하셨습니다. ${userInfo.breakTime}분 동안 휴식시간 입니다`);
+                            // alert(`수고하셨습니다. ${userInfo.breakTime}분 동안 휴식시간 입니다`);
                         } else {
                             setIsWork(true);
                             setTimer(userInfo.workTime);
                             alarm(`이제 ${userInfo.breakTime}분 동안  집중시간 입니다`);
+                            // alert(`이제 ${userInfo.breakTime}분 동안  집중시간 입니다`);
+                        }
+                    } else {
+                        setTimer(timer - 1);
+                    }
+                }, 1000);
+            }
+        } else if (Notification.permission === "default") {
+            // Extension 환경에서 Notification을 지원하지 않는다.
+            Notification.requestPermission();
+            if (isRun) {
+                clearInterval(interval);
+                interval = setInterval(() => {
+                    clearInterval(interval);
+                    if (timer === 0) {
+                        if (isWork) {
+                            if (!userInfo.autoBreakTime) {
+                                clearInterval(interval);
+                                setIsRun(false);
+                                setTimer(userInfo.workTime);
+                                clearInterval(interval);
+                            }
+                            setIsWork(false);
+                            setRoutineCount();
+                            if (userInfo.routineCount % userInfo.longBreakFrequency == 0) {
+                                setTimer(userInfo.longBreakTime);
+                            } else {
+                                setTimer(userInfo.breakTime);
+                            }
+                            // alarm(`수고하셨습니다. ${userInfo.breakTime}분 동안 휴식시간 입니다`);
+                            alert(`수고하셨습니다. ${userInfo.breakTime}분 동안 휴식시간 입니다`);
+                        } else {
+                            setIsWork(true);
+                            setTimer(userInfo.workTime);
+                            // alarm(`이제 ${userInfo.breakTime}분 동안  집중시간 입니다`);
+                            alert(`이제 ${userInfo.breakTime}분 동안  집중시간 입니다`);
                         }
                     } else {
                         setTimer(timer - 1);
@@ -96,8 +134,8 @@ const Pomodoro = () => {
         ? `0${Math.floor(timer % 60)}`
         : `${Math.floor(timer % 60)}`;
     return (
-        <> {/* <Toggle onClick={onClickToggle} /> */
-        } < ButtonStyle > <button
+        <> 
+        < ButtonStyle > <button
             onClick={() => {
                 setIsRun(o => !o);
                 if (isRun === false) {
@@ -126,33 +164,35 @@ const Pomodoro = () => {
         <PopupSetting callback={reload}/>
     </ButtonStyle>
 
-    
-        <div className="pomodoro">
+    <div className="pomodoro">
+      <div>
             {
-                isWork && (
-                    
-                      <MsgStyle>
-                        <div className="timer">
+            isWork && (
+
+                <MsgStyle>
+                    <div className="timer">
                         <div className="timerMsg">{WorkTimeMsg}</div>
                         {displayMin}:{displaySec}
-                        </div>
-                      </MsgStyle>
-                )
-            }
-            {
-                !isWork && (
-                  <MsgStyle>
+                    </div>
+                </MsgStyle>
+            )
+        } {
+            !isWork && (
+                <MsgStyle>
                     <div className="timer">
                         <div className="timerMsg">{breakTimeMsg}</div>
                         {displayMin}:{displaySec}
                     </div>
-                  </MsgStyle>
-                    
-                )
-            }
-            <h3>총 {userInfo.routineCount}회 루틴 진행</h3>
-        </div>
-</>
+                </MsgStyle>
+
+            )
+        } < h3 > 총 {
+            userInfo.routineCount
+        }
+        회 루틴 진행</h3> 
+      </div>
+    </div>
+  </>
     );
 };
 export default Pomodoro;

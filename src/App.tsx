@@ -20,20 +20,21 @@ const GlobalStyle = createGlobalStyle`
     padding: 0; 
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url(${img});
-    min-height: 100vh;
-   
+    background:black;
+    //background-image: url(${img});
+    top: 0;
+    left: 0;
+    //margin:0 auto;
   }
 `;
 const Container = styled.div`
- display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 `
 
 const BlockLeft = styled.div`
   display: flex;
   min-height: 90vh;
-  width: 1080px;
   margin-left: 3rem;
   
 `
@@ -41,40 +42,48 @@ const BlockLeft = styled.div`
 const BlockRight = styled.div`
   display: flex;
   min-height: 20vh;
-  width: 1080px;
   flex-direction: column;
 `
 function App() {
   return (
     <div className="app">
-      <TodoProvider>
+      
         <GlobalStyle />
         <Container>
         <BlockLeft>
+          <TodoProvider>
           <TodoTemplate>
             <TodoHead />
             <TodoList/>
             <TodoCreate/>
           </TodoTemplate>
+          </TodoProvider>
         </BlockLeft>
 
         <BlockRight>
+          <Container>
           <PomTemplate>
             <Pomodoro />
           </PomTemplate>
-
+          <TrackerTemplate>
+          <TimeTracker/>
+          </TrackerTemplate>
+          </Container>
+          
           <MailTemplate>
             <Mail />
           </MailTemplate>
+
+          
         </BlockRight>
         </Container>
-      </TodoProvider>
+      
 
       {/*
       
      
       {/* <TodoTemplate></TodoTemplate> */}
-      <TrackerTemplate><TimeTracker/></TrackerTemplate>
+      
      
       
     </div>

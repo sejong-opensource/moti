@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const PomTemplateBlock = styled.div`
   width: 400px;
+  min-height: 50vh;
   background: white;
   position: relative;
   border-radius: 16px;

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const TrackerTemplateBlock = styled.div`
-  width: 1080px;
+  width: 30vw;
 
   position: relative;
   background: white;

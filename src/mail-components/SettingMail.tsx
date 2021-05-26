@@ -1,6 +1,22 @@
 import React from "react";
 import * as user from "./user";
+import {MdDelete} from 'react-icons/md';
 import styled from "styled-components";
+
+const Remove = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #dee2e6;
+  font-size: 20px;
+  cursor: pointer;
+   color: #6c63ff;
+  &:hover {
+    color: #6c63ff;
+  }
+  margin-left: 1rem;
+  display: none;
+`;
 
 const SettingStyle = styled.div`
   margin: 1rem;
@@ -24,25 +40,36 @@ const SettingStyle = styled.div`
     border-bottom: 1px solid black;
     text-align: center;
     outline: none;
+    cursor: pointer;
     font-size: 15px;
+    margin-right: 2rem;
   }
   #domain{
     width:20rem;
+    margin-top: .5rem;
   }
   input[type="submit"] {
-    width: 4rem;
+    width: 4.5rem;
     background:#6c63ff;
     color:white;
     font-size: 15px;
+    text-align: center;
     border: none;
   }
   button{
-    width: 4rem;
+    width: 4.5rem;
+    text-align: center;
     background:#6c63ff;
     color:white;
     font-size: 15px;
     border: none;
+    cursor: pointer;
     margin-left: 3rem;
+  }
+  &:hover {
+    ${Remove} {
+      display: initial;
+    }
   }
 `;
 
@@ -135,20 +162,20 @@ const SettingMail = () => {
           }}
         >
           <label>
-            중요한 이메일 발신자 혹은 도메인을 입력해주세요 : <input ref={alarmRef} />
-
+            중요한 이메일 발신자 혹은 도메인을 입력해주세요 : <input id="domain" ref={alarmRef} />
           </label>
           <input type="submit" value="추가" />
-          <ul>
+          <ul className="emailList">
             {alarmList
               ? alarmList.map((value) => (
                   <div id={String(alarmList.indexOf(value))}>
-
                     {value}
-                    <button onClick={() => removeAlarm(String(alarmList.indexOf(value)))}>
-                      삭제
-                    </button>
+                    <Remove onClick={() => removeAlarm(String(alarmList.indexOf(value)))}>
+                  <MdDelete />
+                   </Remove>
+                    
                   </div>
+                  
                 ))
               : null}
           </ul>

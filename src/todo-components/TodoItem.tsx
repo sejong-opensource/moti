@@ -11,7 +11,7 @@ const Remove = styled.div`
   font-size: 24px;
   cursor: pointer;
   &:hover {
-    color: #ff6b6b;
+    color: #6c63ff;
   }
   display: none;
 `;

@@ -56,7 +56,7 @@ const SettingMail = () => {
             이메일 주소를 입력해주세요 : <input ref={emailRef} />
           </label>
           <label>
-            비밀번호를 입력해주세요 : <input ref={passwordRef} />
+            비밀번호를 입력해주세요 : <input type="password" ref={passwordRef} />
           </label>
 
           <input type="submit" value="Submit" />

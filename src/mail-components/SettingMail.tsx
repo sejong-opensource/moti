@@ -10,7 +10,7 @@ const SettingMail = () => {
   const [alarmList, setAlarmList] = React.useState<string[]>(null);
 
   const removeAlarm = (id: string) => {
-    const newAlarmList = alarmList.filter((alarm) => {
+    const newAlarmList = alarmList.filter(alarm => {
       if (String(alarmList.indexOf(alarm)) === id) {
         return false;
       } else {
@@ -23,16 +23,23 @@ const SettingMail = () => {
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     let email, password, host;
-    if (emailRef.current && passwordRef.current && hostRef.current) {
-      email = emailRef.current.value;
-      password = passwordRef.current.value;
-      if (emailRef.current.value.indexof("gmail") > 0) {
-        host = "imap.gmail.com";
+    if (emailRef.current && passwordRef.current) {
+      if (emailRef.current.value !== "" || passwordRef.current.value !== "") {
+        email = emailRef.current.value;
+        password = passwordRef.current.value;
+        if (email.indexOf("gmail") > 0) {
+          host = "imap.gmail.com";
+        } else {
+          host = "imap.naver.com";
+        }
+        emailRef.current.value = "";
+        passwordRef.current.value = "";
+        alert("제출되었습니다.");
+        user.setUserInfo(email, password, host);
       } else {
-        host = "imap.naver.com";
+        alert("이메일과 비밀번호를 입력해주세요");
       }
     }
-    user.setUserInfo(email, password, host);
   };
   React.useEffect(() => {
     setAlarmList(user.getAlarmList());
@@ -41,7 +48,7 @@ const SettingMail = () => {
     <div>
       <div>
         <form
-          onSubmit={(event) => {
+          onSubmit={event => {
             onSubmit(event);
           }}
         >
@@ -57,7 +64,7 @@ const SettingMail = () => {
       </div>
       <div>
         <form
-          onSubmit={(event) => {
+          onSubmit={event => {
             event.preventDefault();
             if (alarmRef.current) {
               const newList = alarmList;
@@ -66,24 +73,19 @@ const SettingMail = () => {
               alarmRef.current.value = "";
             }
             setAlarmList(user.getAlarmList());
-            setIsAlarm((o) => !o);
+            setIsAlarm(o => !o);
           }}
         >
           <label>
-            중요한 이메일 발신자 혹은 도메인을 입력해주세요 :{" "}
-            <input ref={alarmRef} />
+            중요한 이메일 발신자 혹은 도메인을 입력해주세요 : <input ref={alarmRef} />
           </label>
           <input type="submit" value="등록" />
           <ul>
             {alarmList
-              ? alarmList.map((value) => (
+              ? alarmList.map(value => (
                   <li id={String(alarmList.indexOf(value))}>
                     {value}
-                    <button
-                      onClick={() =>
-                        removeAlarm(String(alarmList.indexOf(value)))
-                      }
-                    >
+                    <button onClick={() => removeAlarm(String(alarmList.indexOf(value)))}>
                       삭제
                     </button>
                   </li>
@@ -91,7 +93,7 @@ const SettingMail = () => {
               : null}
           </ul>
           <button
-            onClick={(e) => {
+            onClick={e => {
               e.preventDefault();
               user.removeAlarmList();
               setAlarmList(user.getAlarmList());

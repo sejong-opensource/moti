@@ -4,7 +4,6 @@ import * as user from "./user";
 const SettingMail = () => {
   const emailRef = React.useRef(null);
   const passwordRef = React.useRef(null);
-  const hostRef = React.useRef(null);
   const alarmRef = React.useRef(null);
   const [isAlarm, setIsAlarm] = React.useState(false);
   const [alarmList, setAlarmList] = React.useState<string[]>(null);
@@ -22,7 +21,7 @@ const SettingMail = () => {
   };
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    let email, password, host;
+    let email: string, password, host;
     if (emailRef.current && passwordRef.current) {
       if (emailRef.current.value !== "" || passwordRef.current.value !== "") {
         email = emailRef.current.value;
@@ -59,7 +58,7 @@ const SettingMail = () => {
             비밀번호를 입력해주세요 : <input type="password" ref={passwordRef} />
           </label>
 
-          <input type="submit" value="Submit" />
+          <input type="submit" value="계정 등록" />
         </form>
       </div>
       <div>
@@ -67,10 +66,14 @@ const SettingMail = () => {
           onSubmit={event => {
             event.preventDefault();
             if (alarmRef.current) {
-              const newList = alarmList;
-              newList.push(alarmRef.current.value);
-              user.setAlarmList(newList);
-              alarmRef.current.value = "";
+              if (alarmRef.current.value !== "") {
+                const newList = alarmList;
+                newList.push(alarmRef.current.value);
+                user.setAlarmList(newList);
+                alarmRef.current.value = "";
+              } else {
+                alert("발신자 혹은 도메인을 입력해주세요");
+              }
             }
             setAlarmList(user.getAlarmList());
             setIsAlarm(o => !o);
@@ -79,7 +82,7 @@ const SettingMail = () => {
           <label>
             중요한 이메일 발신자 혹은 도메인을 입력해주세요 : <input ref={alarmRef} />
           </label>
-          <input type="submit" value="등록" />
+          <input type="submit" value="추가" />
           <ul>
             {alarmList
               ? alarmList.map(value => (

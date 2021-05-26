@@ -71,6 +71,9 @@ const SettingStyle = styled.div`
       display: initial;
     }
   }
+  .emailList{
+    margin-bottom: 5px;
+  }
 `;
 
 const SettingMail = () => {
@@ -171,7 +174,7 @@ const SettingMail = () => {
                   <div id={String(alarmList.indexOf(value))}>
                     {value}
                     <Remove onClick={() => removeAlarm(String(alarmList.indexOf(value)))}>
-                  <MdDelete />
+                  <MdDelete style={{verticalAlign:"middle"}}/>
                    </Remove>
                     
                   </div>

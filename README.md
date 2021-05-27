@@ -1,12 +1,12 @@
 # 프로젝트 수행 규칙
 
 1. branch 
-   - branch  이름을 보고 목적을 알수 있게 한다  ex) makeDashboard
+   - branch  이름을 보고 목적을 알수 있게 한다  ex) New/add-dashboard
    - branch 이름은 모두 소문자
-   - branch name category
+   - category 종류
      - New: 새 기능 추가
-     - Test:  테스트 브랜치
      - Bug:  버그 수정
+   - branch 이름은 [Category]/[상세 목적]으로 통일
 
 2. Issue
    - 에러 사항들 자세하게 기록
@@ -18,8 +18,7 @@
    - 함수 이름 목적이 확실히 드러나게 적기
 
 4. Commit Message
-
-   - category
+   - category 종류
      - Fix : 잘못된 부분 수정
      - Add: 기능 추가
      - Mod: 코드 수정
@@ -32,5 +31,4 @@
 5. Merge
    - 팀원 3명이 모두 동의할 경우에만 merge 한다
    - pr을 등록한 사람이 직접 merge 한다
-   - merge  후, 용도를 다한 branch는 삭제해도 된다
 

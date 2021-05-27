@@ -4,10 +4,10 @@ import TodoItem from './TodoItem';
 import { useTodoState } from './TodoContext';
 
 const TodoListBlock = styled.div`
-  flex: 1;
+  flex: 5;
   padding: 1rem 1.5rem;
-  padding-bottom: 48px;
-  min-height: 50vh;
+  padding-bottom: .5rem;
+  //min-height: 50vh;
 `;
 
 function TodoList() {

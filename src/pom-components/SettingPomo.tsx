@@ -22,6 +22,9 @@ const SettingStyle = styled.div`
     font-size: 25px;
   }
   input[type="submit"] {
+    width: 3rem;
+    background:#6c63ff;
+    color:white;
     font-size: 15px;
     border: none;
   }

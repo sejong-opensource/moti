@@ -8,7 +8,6 @@ const TodoListBlock = styled.div`
   padding: 1rem 1.5rem;
   padding-bottom: 48px;
   min-height: 50vh;
-  
 `;
 
 function TodoList() {

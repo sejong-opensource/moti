@@ -2,18 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 
 const PomTemplateBlock = styled.div`
-  width: 400px;
-  min-height: 50vh;
-  background: white;
+  height: 50vh;
+  background: rgb(32,28,53);
   position: relative;
   border-radius: 16px;
-  opacity: 0.7;
-
+  margin-left: 2rem;
   margin: 0 auto; 
-
   margin-top: 0;
-  margin-bottom: 10px;
   display: flex;
+  flex:1;
   flex-direction: column;
 `;
 

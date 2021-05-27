@@ -1,5 +1,5 @@
 import React from 'react';
-import { createGlobalStyle } from 'styled-components';
+import {createGlobalStyle} from 'styled-components';
 import styled from 'styled-components';
 import Pomodoro from './pom-components/Pomodoro'
 import PomTemplate from './pom-components/PomTemplate';
@@ -10,84 +10,92 @@ import TodoTemplate from './todo-components/TodoTemplate';
 import TodoHead from './todo-components/TodoHead';
 import TodoList from './todo-components/TodoList';
 import TodoCreate from './todo-components/TodoCreate';
-import { TodoProvider } from './todo-components/TodoContext';
+import {TodoProvider} from './todo-components/TodoContext';
 import TimeTracker from './tracker-components/TimeTracker'
 import img from './assets/3.jpg';
 
-const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle `
   body {
     border: 0;
     padding: 0; 
     background-repeat: no-repeat;
     background-size: cover;
-    background:black;
+    background:linear-gradient(to right,rgb(62,58,99),rgb(68,49,90));
     //background-image: url(${img});
     top: 0;
     left: 0;
-    //margin:0 auto;
   }
 `;
-const Container = styled.div`
+const Container = styled.div `
   display: flex;
   flex-direction: row;
+  width: 90vw;
+  margin: 0 auto;
+  height: 100vh;
+  display: flex;
+  align-items: center;
 `
 
-const BlockLeft = styled.div`
+const BlockLeft = styled.div `
   display: flex;
-  min-height: 90vh;
-  margin-left: 3rem;
+  height: 90vh;
   
 `
 
-const BlockRight = styled.div`
+const BlockRight = styled.div `
   display: flex;
-  min-height: 20vh;
+  flex:1;
   flex-direction: column;
+  margin-left: 1rem;
+  height: 90vh;
+  .space{
+    padding-left: 1rem;
+  }
+`
+const PomTrackerBlock = styled.div `
+display: flex;
+flex:1;
+padding-bottom: 1rem;
 `
 function App() {
-  return (
-    <div className="app">
-      
-        <GlobalStyle />
+    return (<div className="app">
+
+        <GlobalStyle/>
         <Container>
-        <BlockLeft>
-          <TodoProvider>
-          <TodoTemplate>
-            <TodoHead />
-            <TodoList/>
-            <TodoCreate/>
-          </TodoTemplate>
-          </TodoProvider>
-        </BlockLeft>
+            <BlockLeft>
+                <TodoProvider>
+                    <TodoTemplate>
+                        <TodoHead/>
+                        <TodoList/>
+                        <TodoCreate/>
+                    </TodoTemplate>
+                </TodoProvider>
+            </BlockLeft>
 
-        <BlockRight>
-          <Container>
-          <PomTemplate>
-            <Pomodoro />
-          </PomTemplate>
-          <TrackerTemplate>
-          <TimeTracker/>
-          </TrackerTemplate>
-          </Container>
-          
-          <MailTemplate>
-            <Mail />
-          </MailTemplate>
+            <BlockRight>
+                <PomTrackerBlock>
+                    <PomTemplate>
+                        <Pomodoro/>
+                    </PomTemplate>
+                    <div className="space"/>
+                    <TrackerTemplate>
+                        <TimeTracker/>
+                    </TrackerTemplate>
+                </PomTrackerBlock>
 
-          
-        </BlockRight>
+                <MailTemplate>
+                    <Mail/>
+                </MailTemplate>
+            </BlockRight>
         </Container>
-      
 
-      {/*
-      
-     
-      {/* <TodoTemplate></TodoTemplate> */}
-      
-     
-      
-    </div>
-  );
-}
+        {/*
 
-export default App;
+
+      {/* <TodoTemplate></TodoTemplate> */
+        }
+
+        </div>);
+    }
+
+        export default App;

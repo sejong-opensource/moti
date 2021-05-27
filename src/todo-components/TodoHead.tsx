@@ -11,11 +11,11 @@ const TodoHeadBlock = styled.div`
   h1 {
     margin: 0;
     font-size: 36px;
-    color: #343a40;
+    color: rgb(230,231,232);
   }
   .day {
     margin-top: 4px;
-    color: #868e96;
+    color: rgb(230,231,232);
     font-size: 21px;
   }
   .tasks-left {

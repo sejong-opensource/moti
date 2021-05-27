@@ -50,11 +50,11 @@ const CheckCircle = styled.div`
 const Text = styled.div`
   flex: 1;
   font-size: 21px;
-  color: #495057;
+  color: rgb(230,231,232);
   ${props =>
     props.done &&
     css`
-      color: #ced4da;
+      color: white;
       text-decoration: line-through;
       white-space: nowrap; //자동줄바꿈처리
     `}

@@ -4,7 +4,7 @@ import { userInfo, setRoutineCount } from "./user";
 import Toggle from "./Toggle";
 
 const breakTimeMsg = "쉬는시간 입니다.";
-const WorkTimeMsg = "집중시간하는 시간입니다.";
+const WorkTimeMsg = "집중시간 입니다.";
 
 // Todo
 const Pomodoro = () => {
@@ -133,13 +133,10 @@ const Pomodoro = () => {
       <button
         onClick={() => {
           setRoutineCount(0);
-          if (isWork) {
-            clearInterval(interval);
-            setTimer(userInfo.workTime);
-          } else {
-            clearInterval(interval);
-            setTimer(userInfo.breakTime);
-          }
+          setIsWork(true);
+          clearInterval(interval);
+          setTimer(userInfo.workTime);
+          setIsRun(false);
         }}
       >
         초기화

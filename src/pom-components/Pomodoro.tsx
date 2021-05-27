@@ -8,19 +8,47 @@ const breakTimeMsg = "쉬는시간 입니다.";
 const WorkTimeMsg = "집중시간 입니다.";
 
 const ButtonStyle = styled.div `
-display:flex;
-button{
-  flex:1;
-  margin: 1rem;
-  min-height: 3rem;
-}
+    display:flex;
+    padding:.3rem;
+    button{
+        flex:1;
+        margin-top: 1rem;
+        margin-left:.3rem;
+        margin-right:.3rem;
+        height: 3rem;
+        border-radius: .3rem;
+        border:none;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.95);
+        color: rgba(255, 255, 255, 0.95);
+        cursor:pointer;
+        transition-property: background, color;
+        transition-duration: .3s;
+        &:hover{
+            background: rgba(255, 255, 255, 0.95);
+            color: black;
+        }
+    }
+
+    margin-bottom: 2rem;
+    
+    
 `
-const MsgStyle = styled.div `
-.timer{
-  font-size: 30px;
+
+const TimerStyle = styled.div `
+margin: 0 auto;
+width: 260px;
+.timerMsg{
+        font-size: 25px;
+  color:rgb(230,231,232);
+  margin-bottom: 1rem;
 }
+  .clock{
+      
+    font-size: 100px;
+    color:#6c63ff; 
+  }
 `
-// Todo
 const Pomodoro = () => {
     // let maxWork = userInfo.workTime * 60; let maxBreak = userInfo.breakTime * 60;
 
@@ -50,7 +78,7 @@ const Pomodoro = () => {
         if (isWork) {
             new Notification("수고하셨습니다!!!", {body: msg});
         } else {
-            new Notification("이제 다시 시작해볼까요???", {body: msg});
+            new Notification("이제 다시 시작해볼까요!", {body: msg});
         }
         // var notification = new Notification('할 일 목록', { body: text, icon: img });
     };
@@ -136,7 +164,7 @@ const Pomodoro = () => {
         : `${Math.floor(timer % 60)}`;
     return (
         <> {/* <Toggle onClick={onClickToggle} /> */
-        } < button onClick = {
+        } < ButtonStyle > <button onClick = {
             () => {
                 setIsRun(o => !o);
                 if (isRun === false) {
@@ -159,12 +187,15 @@ const Pomodoro = () => {
       >
         초기화
       </button > <PopupSetting callback={reload}/>
+    </ButtonStyle>
+    <TimerStyle>
         <div className="pomodoro">
             {
                 isWork && (
                     <div className="timer">
                         <div className="timerMsg">{WorkTimeMsg}</div>
-                        {displayMin}:{displaySec}
+
+                        <div className="clock">{displayMin}:{displaySec}</div>
                     </div>
                 )
             }
@@ -172,12 +203,14 @@ const Pomodoro = () => {
                 !isWork && (
                     <div className="timer">
                         <div className="timerMsg">{breakTimeMsg}</div>
-                        {displayMin}:{displaySec}
+                        <div className="clock">{displayMin}:{displaySec}</div>
                     </div>
                 )
             }
             <h3>총 {userInfo.routineCount}회 루틴 진행</h3>
         </div>
+    </TimerStyle>
+
 </>
     );
 };

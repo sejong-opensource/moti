@@ -6,23 +6,21 @@ const TodoHeadBlock = styled.div`
   padding-top: 48px;
   padding-left: 32px;
   padding-right: 32px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #e9ecef;
   flex:1;
   h1 {
     margin: 0;
-    font-size: 36px;
+    font-size: 40px;
     color: rgb(230,231,232);
   }
   .day {
     margin-top: 4px;
     color: rgb(230,231,232);
-    font-size: 21px;
+    font-size: 25px;
   }
   .tasks-left {
     color: #6c63ff;
     font-size: 18px;
-    margin-top: 40px;
+    margin-top: 50px;
     font-weight: bold;
   }
 `;

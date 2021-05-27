@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Toggle from "./Toggle";
 
 const breakTimeMsg = "쉬는시간 입니다.";
-const WorkTimeMsg = "집중시간하는 시간입니다.";
+const WorkTimeMsg = "집중시간 입니다.";
 
 const ButtonStyle = styled.div `
 display:flex;
@@ -118,6 +118,7 @@ const Pomodoro = () => {
                             // alarm(`이제 ${userInfo.breakTime}분 동안  집중시간 입니다`);
                             alert(`이제 ${userInfo.breakTime}분 동안  집중시간 입니다`);
                         }
+
                     } else {
                         setTimer(timer - 1);
                     }
@@ -134,65 +135,50 @@ const Pomodoro = () => {
         ? `0${Math.floor(timer % 60)}`
         : `${Math.floor(timer % 60)}`;
     return (
-        <> 
-        < ButtonStyle > <button
-            onClick={() => {
+        <> {/* <Toggle onClick={onClickToggle} /> */
+        } < button onClick = {
+            () => {
                 setIsRun(o => !o);
                 if (isRun === false) {
                     clearInterval(interval);
                 }
-            }}>
-            {
-                isRun
-                    ? "정지"
-                    : "시작"
             }
-        </button>
-        <button
-            onClick={() => {
-                setRoutineCount(0);
-                if (isWork) {
-                    clearInterval(interval);
-                    setTimer(userInfo.workTime);
-                } else {
-                    clearInterval(interval);
-                    setTimer(userInfo.breakTime);
-                }
-            }}>
-            초기화
-        </button>
-        <PopupSetting callback={reload}/>
-    </ButtonStyle>
-
-    <div className="pomodoro">
-      <div>
+        } > {
+            isRun
+                ? "정지"
+                : "시작"
+        } </button>
+      <button
+        onClick={() => {
+          setRoutineCount(0);
+          setIsWork(true);
+          clearInterval(interval);
+          setTimer(userInfo.workTime);
+          setIsRun(false);
+        }}
+      >
+        초기화
+      </button > <PopupSetting callback={reload}/>
+        <div className="pomodoro">
             {
-            isWork && (
-
-                <MsgStyle>
+                isWork && (
                     <div className="timer">
                         <div className="timerMsg">{WorkTimeMsg}</div>
                         {displayMin}:{displaySec}
                     </div>
-                </MsgStyle>
-            )
-        } {
-            !isWork && (
-                <MsgStyle>
+                )
+            }
+            {
+                !isWork && (
                     <div className="timer">
                         <div className="timerMsg">{breakTimeMsg}</div>
                         {displayMin}:{displaySec}
                     </div>
-                </MsgStyle>
-
-            )
-        } < h3 > 총 {
-            userInfo.routineCount
-        }
-        회 루틴 진행</h3> 
-      </div>
-    </div>
-  </>
+                )
+            }
+            <h3>총 {userInfo.routineCount}회 루틴 진행</h3>
+        </div>
+</>
     );
 };
 export default Pomodoro;

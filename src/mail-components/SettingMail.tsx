@@ -183,6 +183,7 @@ const SettingMail = () => {
               : null}
           </ul>
           <button
+            style={{marginLeft:"5rem"}}
             onClick={e => {
               e.preventDefault();
               user.removeAlarmList();

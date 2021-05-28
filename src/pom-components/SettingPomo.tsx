@@ -23,10 +23,12 @@ const SettingStyle = styled.div`
   }
   input[type="submit"] {
     width: 3rem;
+    height: 2rem;
     background:#6c63ff;
     color:white;
     font-size: 15px;
     border: none;
+    cursor: pointer;
   }
 `;
 const SettingPomo = (prop: Prop) => {

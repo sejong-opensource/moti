@@ -56,23 +56,41 @@ const SettingStyle = styled.div`
     text-align: center;
     border: none;
   }
-  button{
-    width: 4.5rem;
-    text-align: center;
-    background:#6c63ff;
-    color:white;
-    font-size: 15px;
-    border: none;
-    cursor: pointer;
-    margin-left: 3rem;
-  }
+ 
   &:hover {
     ${Remove} {
       display: initial;
     }
   }
-  .emailList{
+  .textList {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
     margin-bottom: 5px;
+    .listBlock {
+        display: flex;
+        button {
+            width: 4.5rem;
+            height: fit-content;
+            text-align: center;
+            background: #6c63ff;
+            color: white;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            margin-left: 3rem;
+        }
+        .text{
+            
+            border-radius: .2rem;
+            text-align: center;
+            font-size: 20px;
+            color: #495057;
+          }
+    }
+  }
+  .emailList{
+    background: #e1e0f0;
   }
 `;
 
@@ -168,30 +186,36 @@ const SettingMail = () => {
             중요한 이메일 발신자 혹은 도메인을 입력해주세요 : <input id="domain" ref={alarmRef} />
           </label>
           <input type="submit" value="추가" />
-          <ul className="emailList">
-            {alarmList
-              ? alarmList.map((value) => (
-                  <div id={String(alarmList.indexOf(value))}>
-                    {value}
-                    <Remove onClick={() => removeAlarm(String(alarmList.indexOf(value)))}>
-                  <MdDelete style={{verticalAlign:"middle"}}/>
-                   </Remove>
+          <div className="textList">
+              <div className ="listBlock">
+                <div className="text">이메일 발신자, 도메인 목록</div>
+                <button
+                onClick={e => {
+                  e.preventDefault();
+                  user.removeAlarmList();
+                  setAlarmList(user.getAlarmList());
+                }}
+              >
+                모두 삭제
+              </button>
+              </div>
+            <div className="emailList">
+              {alarmList
+                ? alarmList.map((value) => (
+                    <div id={String(alarmList.indexOf(value))}>
+                      {value}
+                      <Remove onClick={() => removeAlarm(String(alarmList.indexOf(value)))}>
+                    <MdDelete style={{verticalAlign:"middle"}}/>
+                    </Remove>
+                      
+                    </div>
                     
-                  </div>
-                  
-                ))
-              : null}
-          </ul>
-          <button
-            style={{marginLeft:"5rem"}}
-            onClick={e => {
-              e.preventDefault();
-              user.removeAlarmList();
-              setAlarmList(user.getAlarmList());
-            }}
-          >
-            모두 삭제
-          </button>
+                  ))
+                : null}
+            </div>
+            
+          </div>
+          
           </form>
           </SettingStyle>
       </div>

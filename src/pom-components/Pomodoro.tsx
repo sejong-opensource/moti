@@ -38,15 +38,23 @@ const ButtonStyle = styled.div `
 const TimerStyle = styled.div `
 margin: 0 auto;
 width: 260px;
+margin-top: 1.5rem;
 .timerMsg{
         font-size: 25px;
   color:rgb(230,231,232);
   margin-bottom: 1rem;
 }
-  .clock{
-      
+  .clock{ 
     font-size: 100px;
     color:#6c63ff; 
+  }
+  h3{
+      margin-top: 3rem;
+      color:#b4b8bb;
+  }
+  .block{
+      display:flex;
+      justify-content: space-between;
   }
 `
 const Pomodoro = () => {
@@ -207,7 +215,10 @@ const Pomodoro = () => {
                     </div>
                 )
             }
+            <div className="block">
+            <div></div>
             <h3>총 {userInfo.routineCount}회 루틴 진행</h3>
+            </div>
         </div>
     </TimerStyle>
 

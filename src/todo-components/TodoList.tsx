@@ -8,6 +8,10 @@ const TodoListBlock = styled.div`
   padding: 1rem 1.5rem;
   padding-bottom: 0.5rem;
   //min-height: 50vh;
+  .scroll-box{
+    height: 55vh;
+    overflow-y: scroll;
+  }
 `;
 
 function TodoList() {
@@ -15,9 +19,11 @@ function TodoList() {
 
   return (
     <TodoListBlock>
-      {todos.map(todo => (
-        <TodoItem key={todo.id} id={todo.id} text={todo.text} done={todo.done} />
-      ))}
+      <div className="scroll-box">
+        {todos.map(todo => (
+          <TodoItem key={todo.id} id={todo.id} text={todo.text} done={todo.done} />
+        ))}
+      </div>
     </TodoListBlock>
   );
 }

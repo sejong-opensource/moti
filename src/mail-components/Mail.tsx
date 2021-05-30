@@ -39,7 +39,7 @@ const ListStyle = styled.div `
   list-style-type: square;
   color: rgb(230, 231, 232);
   font-size: 20px;
-  height: 270px;
+  height: 25vh;
   overflow-y:scroll;
 `
 const selectMail = (mail: MailType) => {

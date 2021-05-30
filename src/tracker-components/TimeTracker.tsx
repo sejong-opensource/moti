@@ -17,6 +17,7 @@ flex-direction: column;
       border: none;
       border-bottom: 1px solid rgba(255, 255, 255, 0.95);
       text-align: center;
+      color:rgb(230, 231, 232);
       outline: none;
       font-size: 15px;
     }
@@ -43,6 +44,13 @@ const ButtonStyle = styled.div`
       color: black;
     }
   }
+`
+const ListStyle = styled.div `
+  list-style-type: square;
+  color: rgb(230, 231, 232);
+  font-size: 20px;
+  height: 15vh;
+  overflow-y:scroll;
 `
 
 const UserUrl =()=>{
@@ -104,10 +112,10 @@ const UserUrl =()=>{
               <input placeholder="ex) *://*.facebook.com/*" value={userUrl} onChange={onChange}  />
               <ButtonStyle>
               <button onClick={onInsert}>add</button>
+              <button onClick={clear}>clearAll</button>
               </ButtonStyle>
             </div>
-          
-          
+            <ListStyle>
             <ul>
                 {/* {localArr&&localArr.map((value, nextId) => (
                   <li key={nextId} >url : {value}</li>
@@ -116,9 +124,7 @@ const UserUrl =()=>{
                   <li key={nextId} >url : {value}</li>
                 ))}
             </ul>
-            <ButtonStyle>
-            <button onClick={clear}>clearAll</button>
-            </ButtonStyle>
+            </ListStyle>
           </Container>
           
         </div>

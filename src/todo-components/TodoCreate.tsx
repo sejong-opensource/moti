@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import styled, { css } from 'styled-components';
-import { MdAdd } from 'react-icons/md';
-import { useTodoDispatch, useTodoNextId } from './TodoContext';
+import React, { useState } from "react";
+import styled, { css } from "styled-components";
+import { MdAdd } from "react-icons/md";
+import { useTodoDispatch, useTodoNextId, useTodoState } from "./TodoContext";
 
 const CircleButton = styled.button`
   background: #6c63ff;
@@ -14,15 +14,15 @@ const CircleButton = styled.button`
 
   z-index: 5;
   cursor: pointer;
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
   display: block;
   align-items: center;
   justify-content: center;
   font-size: 60px;
   position: absolute;
-  left: 50%;
-  bottom: 0px;
+  left: 90%;
+  bottom: 6%;
   transform: translate(-50%, 50%);
   color: white;
   border-radius: 50%;
@@ -55,48 +55,55 @@ const InsertFormPositioner = styled.div`
 `;
 
 const InsertForm = styled.form`
-  background: #f8f9fa;
+  background: rgb(43, 41, 72);
   padding-left: 32px;
-  padding-top: 32px;
+  padding-top: 22px;
   padding-right: 32px;
-  padding-bottom: 72px;
+  padding-bottom: 22px;
 
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
-  border-top: 1px solid #e9ecef;
+  border-top: 1px solid rgb(43, 41, 72);
 `;
 
 const Input = styled.input`
   padding: 12px;
   border-radius: 4px;
   border: 1px solid #dee2e6;
-  width: 100%;
+  width: 85%;
   outline: none;
   font-size: 18px;
   box-sizing: border-box;
-  overflow-y:scroll;
+  overflow-y: scroll;
 `;
 
-const TodoCreate = ()=> {
+const TodoCreate = () => {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
 
   const dispatch = useTodoDispatch();
+  const curTodos = useTodoState();
   const nextId = useTodoNextId();
-
   const onToggle = () => setOpen(!open);
   const onChange = e => setValue(e.target.value);
   const onSubmit = e => {
     e.preventDefault(); // 새로고침 방지
+    const newTodo = {
+      id: nextId.current,
+      text: value,
+      done: false,
+    };
     dispatch({
-      type: 'CREATE',
+      type: "CREATE",
       todo: {
         id: nextId.current,
         text: value,
-        done: false
-      }
+        done: false,
+      },
     });
-    setValue('');
+    curTodos.push(newTodo);
+    localStorage.setItem("todos", JSON.stringify(curTodos));
+    setValue("");
     setOpen(false);
     nextId.current += 1;
   };
@@ -120,6 +127,6 @@ const TodoCreate = ()=> {
       </CircleButton>
     </>
   );
-}
+};
 
 export default React.memo(TodoCreate);

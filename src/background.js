@@ -1,71 +1,35 @@
-const setItem = (val)=>{
-   localStorage.setItem("url",val);
-}
-console.log("Loaded extension");
-const localurl = localStorage.getItem("url");
-console.log(localurl);
- 
-//let urlPattern = localurl;
-// const isValidPattern = (urlPattern) => {
-//    var validPattern = /^(file:\/\/.+)|(https?|ftp|\*):\/\/(\*|\*\.([^\/*]+)|([^\/*]+))\//g;
-//    console.log(urlPattern.match(validPattern));
-//    return !!urlPattern.match(validPattern);
-//    //test  urlPattern.match(validPattern); VS !!urlPattern.match(validPattern)
-//  }
 
+const isValidPattern = (urlPattern) => {
+   var validPattern = /^(file:\/\/.+)|(https?|ftp|\*):\/\/(\*|\*\.([^\/*]+)|([^\/*]+))\//g;
+   console.log(urlPattern.match(validPattern));
+   return !!urlPattern.match(validPattern);
+   //test  urlPattern.match(validPattern); VS !!urlPattern.match(validPattern)
+ }
+
+
+
+console.log("back");
 function blockRequest(details) {
    return {cancel: true};
 }
 
-function updateFilters(urls) {
+function upDateFilters(urls) { //=>urls에 통째로 배열넣기
    if(chrome.webRequest.onBeforeRequest.hasListener(blockRequest))
      chrome.webRequest.onBeforeRequest.removeListener(blockRequest);
-   chrome.webRequest.onBeforeRequest.addListener(blockRequest, {urls: [urls]}, ['blocking']);
+     console.log("in blocking function",typeof urls);
+   chrome.webRequest.onBeforeRequest.addListener(blockRequest, {urls:urls}, ['blocking']);
 }
 
-updateFilters("*://*.facebook.com/*");
-//-----------------------------------------------------------------------------------------------------------------------------
-//chrome.storage.sync.set({'A':{"maxtime":50,"curtime":5}},()=>console.log('done'))
+//upDateFilters("*://*.facebook.com/*");
+//upDateFilters();
 
-// const urls = {
-//    'A': {
-//       maxtime : 50,
-//       curtime : 5
-//    },
-//    'B' :{
-//       maxtime : 50,
-//       curtime : 5
-//    },
-// }
 
-// setInterval(()=>{
-//    chrome.webRequest.onBeforeRequest.addListener(function(details) {
-//       console.log('onBeforeRequest', details.url);
-//       banUrl == url 
-//       cnt ++;
-//       chrome(set)
-//       if(chrome.max == chrome(set)){
-//          url -> pattern
+chrome.runtime.onConnect.addListener(function(port) {
+   port.onMessage.addListener(function(msg) {
+      console.log("print background : " + msg);
+        localStorage.setItem("urls",JSON.stringify(msg));
+        upDateFilters(msg);
+        console.log(JSON.parse(localStorage.getItem("urls")));
+        });
+})
 
-//             // updateFilters(["*://*.youtube.com/*"]);
-//       }
-//     },
-//     {
-//       urls: ["<all_urls>"]
-//     })
-// },1000)
-// let cnt = 50;
-// setInterval(()=>{
-//    cnt=cnt+1;
-//    chrome.storage.sync.set({'A':{"maxtime":50,"curtime":cnt}},()=>console.log('done'))
-//    chrome.storage.sync.get(['A'],(result)=>console.log(result))
-// },2000)
-
-// setInterval(()=>{
-//    (1) 현재 접속한 url 
-//    (2) if(url => urls pattern){
-//       timeCnt[2] = timeCnt[2] + 1;
-//       if(max =< timeCnt) 
-//    }
-   
-// },1000);

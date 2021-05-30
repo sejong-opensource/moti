@@ -1,7 +1,7 @@
-import React from 'react';
-import styled, { css } from 'styled-components';
-import { MdDone, MdDelete } from 'react-icons/md';
-import { useTodoDispatch } from './TodoContext';
+import React from "react";
+import styled, { css } from "styled-components";
+import { MdDone, MdDelete } from "react-icons/md";
+import { useTodoDispatch } from "./TodoContext";
 
 const Remove = styled.div`
   display: flex;
@@ -11,7 +11,7 @@ const Remove = styled.div`
   font-size: 24px;
   cursor: pointer;
   &:hover {
-    color: #ff6b6b;
+    color: #6c63ff;
   }
   display: none;
 `;
@@ -49,27 +49,42 @@ const CheckCircle = styled.div`
 
 const Text = styled.div`
   flex: 1;
-  font-size: 21px;
-  color: #495057;
+  font-size: 19px;
+  color: rgb(230, 231, 232);
   ${props =>
     props.done &&
     css`
-      color: #ced4da;
+      color: gray;
       text-decoration: line-through;
       white-space: nowrap; //자동줄바꿈처리
     `}
 `;
-
-
+type Todo = {
+  id: number;
+  text: string;
+  done: boolean;
+};
 function TodoItem({ id, done, text }) {
   const dispatch = useTodoDispatch();
-  const onToggle = () => dispatch({ type: 'TOGGLE',id});
-  const onRemove = () => dispatch({ type: 'REMOVE', id });
+  const onToggle = () => dispatch({ type: "TOGGLE", id });
+  const onRemove = () => {
+    dispatch({ type: "REMOVE", id });
+
+    let curTodos: Array<Todo> = JSON.parse(localStorage.getItem("todos"));
+    console.log(curTodos);
+    curTodos = curTodos.filter(todo => {
+      if (todo.id === id) {
+        return false;
+      }
+      return true;
+    });
+    localStorage.setItem("todos", JSON.stringify(curTodos));
+  };
   return (
     <TodoItemBlock>
       <CheckCircle done={done} onClick={onToggle}>
         {done && <MdDone />}
-        </CheckCircle>
+      </CheckCircle>
       <Text done={done}>{text}</Text>
       <Remove onClick={onRemove}>
         <MdDelete />

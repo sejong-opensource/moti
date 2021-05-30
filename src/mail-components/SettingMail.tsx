@@ -35,7 +35,7 @@ const SettingStyle = styled.div`
     color: #495057;
   }
   input {
-    width: 10rem;
+    width: 12rem;
     border: none;
     border-bottom: 1px solid black;
     text-align: center;

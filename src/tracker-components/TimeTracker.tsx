@@ -1,7 +1,6 @@
-/*globla chrome*/
 import React from 'react';
 import {useState,useEffect,useRef} from 'react';
-//import activeWindow from 'active-win';
+import activeWindow from 'active-win';
 import styled from "styled-components";
 
 const Container = styled.div `
@@ -57,18 +56,15 @@ const UserUrl =()=>{
         if(Array.isArray(local))
           setList(local);
       }catch(e) {
-
       }
-     
     }, []);
 
     const onChange = (e:React.ChangeEvent<HTMLInputElement>) => {
         setUrl(e.target.value);
-        
     };
+
     const clear = (e) => {
       setList([]);
-
       localStorage.clear();
       let port = chrome.runtime.connect({
         //name: "clear"
@@ -79,17 +75,19 @@ const UserUrl =()=>{
         console.log(msg);
       });
     }
+
     //https://www.facebook.com/
 
-    
   const onInsert = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    
+    //const nextList = [...list,domain.match(pattern)];
     const nextList = [...list,userUrl];
     setList(nextList);
 
     localStorage.setItem("front",JSON.stringify(nextList));
-
+    let regex = 
     setUrl('');
-
+    
     let port = chrome.runtime.connect({
       name: "Sample Communication"
     });
@@ -97,6 +95,7 @@ const UserUrl =()=>{
     port.onMessage.addListener(function(msg) {
       console.log(msg);
     });
+
   }
       return (
         <div>

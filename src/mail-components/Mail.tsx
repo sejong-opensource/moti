@@ -2,6 +2,7 @@ import React from "react";
 import { getUserInfo, getAlarmList } from "./user";
 import PopupSetting from "./PopupSetting";
 import axios from "axios";
+import styled from "styled-components";
 //Todo 1. firebase 혹은 storage 연동
 
 type MailType = {
@@ -9,7 +10,29 @@ type MailType = {
   title: string;
   sender: string;
 };
-
+const ButtonStyle = styled.div`
+  display: flex;
+  padding: 0.3rem;
+  button {
+    margin-top: 1rem;
+    margin-left: 0.3rem;
+    margin-right: 0.3rem;
+    width: 8rem;
+    height: 3rem;
+    border-radius: 0.3rem;
+    border: none;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    color: rgba(255, 255, 255, 0.95);
+    cursor: pointer;
+    transition-property: background, color;
+    transition-duration: 0.3s;
+    &:hover {
+      background: rgba(255, 255, 255, 0.95);
+      color: black;
+    }
+  }
+`
 const selectMail = (mail: MailType) => {
   let result = false;
   const alarmList = getAlarmList();
@@ -83,6 +106,8 @@ const Mail = () => {
   });
   return (
     <div>
+      <div className="Button">
+      <ButtonStyle>
       <PopupSetting callback={reload} />
       <button
         onClick={() => {
@@ -91,6 +116,9 @@ const Mail = () => {
       >
         새로고침
       </button>
+      </ButtonStyle>
+      </div>
+      
       <ul>
         {mailList
           ? mailList.map((mail) => (

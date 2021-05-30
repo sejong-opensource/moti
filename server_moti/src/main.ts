@@ -13,14 +13,14 @@ const port = 5000;
 app.use(bodyParser.json());
 app.use(cors());
 app.post("/getEmail", async (req, res) => {
-  const result = await getMail(
-    req.body.email,
-    req.body.password,
-    req.body.host
-  );
-  res.send(result);
-  res.status(200);
-  console.log("done at ", new Date().toTimeString());
+  try {
+    const result = await getMail(req.body.email, req.body.password, req.body.host);
+    res.send(result);
+    res.status(200);
+    console.log("done at ", new Date().toTimeString());
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 app.listen(port, () => {

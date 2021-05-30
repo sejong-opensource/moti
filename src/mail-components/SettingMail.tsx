@@ -2,6 +2,7 @@ import React from "react";
 import * as user from "./user";
 import {MdDelete} from 'react-icons/md';
 import styled from "styled-components";
+import PhraseTemplate from "../phrase-components/PhraseTemplate";
 
 const Remove = styled.div`
   display: flex;
@@ -89,8 +90,9 @@ const SettingStyle = styled.div`
           }
     }
   }
-  .emailList{
-    background: #e1e0f0;
+  ul{
+    list-style-type: square;
+    font-size: 15px;
   }
 `;
 
@@ -199,23 +201,21 @@ const SettingMail = () => {
                 모두 삭제
               </button>
               </div>
-            <div className="emailList">
+            <ul>
               {alarmList
                 ? alarmList.map((value) => (
+                  <li>
                     <div id={String(alarmList.indexOf(value))}>
                       {value}
                       <Remove onClick={() => removeAlarm(String(alarmList.indexOf(value)))}>
                     <MdDelete style={{verticalAlign:"middle"}}/>
                     </Remove>
-                      
                     </div>
-                    
+                    </li>
                   ))
                 : null}
-            </div>
-            
+            </ul>
           </div>
-          
           </form>
           </SettingStyle>
       </div>

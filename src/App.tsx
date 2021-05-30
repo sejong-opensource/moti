@@ -13,6 +13,7 @@ import TodoCreate from "./todo-components/TodoCreate";
 import { TodoProvider } from "./todo-components/TodoContext";
 import TimeTracker from "./tracker-components/TimeTracker";
 import img from "./assets/3.jpg";
+import PhraseTemplate from "./phrase-components/PhraseTemplate"
 import Phrase from "./phrase-components/Phrase";
 const GlobalStyle = createGlobalStyle`
   body {
@@ -55,6 +56,11 @@ const PomTrackerBlock = styled.div`
   display: flex;
   flex: 1;
   padding-bottom: 1rem;
+  .block{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+  }
 `;
 function App() {
   return (
@@ -77,9 +83,15 @@ function App() {
               <Pomodoro />
             </PomTemplate>
             <div className="space" />
-            <TrackerTemplate>
-              <TimeTracker />
-            </TrackerTemplate>
+              <div className="block">
+                <TrackerTemplate>
+                    <TimeTracker />
+                </TrackerTemplate>
+                <div className="space" />
+                <PhraseTemplate>
+                  <Phrase />
+                </PhraseTemplate>
+              </div>
           </PomTrackerBlock>
 
           <MailTemplate>
@@ -87,10 +99,6 @@ function App() {
           </MailTemplate>
         </BlockRight>
       </Container>
-
-      <TodoTemplate>
-        <Phrase />
-      </TodoTemplate>
     </div>
   );
 }

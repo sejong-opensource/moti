@@ -129,13 +129,13 @@ const Mail = () => {
       </div>
       <ListStyle>
       <ul>
-        {/* {mailList
+         {mailList
           ? mailList.map((mail) => (
               <li>
                 {mail.title} / {mail.date} / {mail.sender}
               </li>
             ))
-          : null} */}
+          : null}
       </ul>
       </ListStyle>
       

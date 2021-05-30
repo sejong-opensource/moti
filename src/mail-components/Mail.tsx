@@ -11,6 +11,7 @@ type MailType = {
   sender: string;
 };
 const ButtonStyle = styled.div`
+margin-bottom: .5rem;
   display: flex;
   padding: 0.3rem;
   button {
@@ -32,6 +33,14 @@ const ButtonStyle = styled.div`
       color: black;
     }
   }
+`
+
+const ListStyle = styled.div `
+  list-style-type: square;
+  color: rgb(230, 231, 232);
+  font-size: 20px;
+  height: 270px;
+  overflow-y:scroll;
 `
 const selectMail = (mail: MailType) => {
   let result = false;
@@ -118,16 +127,22 @@ const Mail = () => {
       </button>
       </ButtonStyle>
       </div>
-      
+      <ListStyle>
       <ul>
-        {mailList
+        <li>
+          가나다라마바사아아아아아아아아아아아아
+        </li>
+        
+        {/* {mailList
           ? mailList.map((mail) => (
               <li>
                 {mail.title} / {mail.date} / {mail.sender}
               </li>
             ))
-          : null}
+          : null} */}
       </ul>
+      </ListStyle>
+      
     </div>
   );
 };

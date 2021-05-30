@@ -129,10 +129,6 @@ const Mail = () => {
       </div>
       <ListStyle>
       <ul>
-        <li>
-          가나다라마바사아아아아아아아아아아아아
-        </li>
-        
         {/* {mailList
           ? mailList.map((mail) => (
               <li>

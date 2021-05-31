@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const PhraseTemplateBlock = styled.div `
   flex:1;
-  height: 100%;
+  //height: 24vh;
   position: relative;
   background: rgb(32,28,53);
   border-radius: 16px;

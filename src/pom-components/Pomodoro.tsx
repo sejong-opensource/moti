@@ -46,8 +46,9 @@ const TimerStyle = styled.div`
     color: #6c63ff;
   }
   h3 {
-    margin-top: 3rem;
-    color: #b4b8bb;
+    align-items: flex-end;
+    font-size: 15px;
+    color: rgb(230, 231, 232);
   }
   .block {
     display: flex;

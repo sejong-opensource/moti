@@ -11,6 +11,7 @@ const PhraseTemplateBlock = styled.div `
   margin: 0 auto; 
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
 `;
 
 function PhraseTemplate({children}) {

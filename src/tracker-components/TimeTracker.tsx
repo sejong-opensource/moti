@@ -3,6 +3,7 @@ import {useState,useEffect,useRef} from 'react';
 import activeWindow from 'active-win';
 import styled from "styled-components";
 
+
 const Container = styled.div `
 display: flex;
 flex-direction: column;
@@ -46,9 +47,7 @@ const ButtonStyle = styled.div`
   }
 `
 const ListStyle = styled.div `
-  ul{
-    list-style-type: square;
-  }
+  list-style-type: square;
   color: rgb(230, 231, 232);
   font-size: 20px;
   height: 15vh;
@@ -60,13 +59,15 @@ const ListStyle = styled.div `
 const UserUrl =()=>{
     const [list, setList] = useState([]);
     const [userUrl, setUrl] = useState('');
+    const [outList,setOut] = useState([]);
     
     useEffect(() => {
       try {
         const local = JSON.parse(localStorage.getItem('front'));
 
         if(Array.isArray(local))
-          setList(local);
+          //setList(local);
+          setOut(local);
       }catch(e) {
       }
     }, []);
@@ -76,7 +77,9 @@ const UserUrl =()=>{
     };
 
     const clear = (e) => {
+      
       setList([]);
+      setOut([]);
       localStorage.clear();
       let port = chrome.runtime.connect({
         //name: "clear"
@@ -95,17 +98,24 @@ const UserUrl =()=>{
     pattern = userUrl;
     pattern = '*://*.'+userUrl+"/*";
 
-    const nextList = [...list,pattern];
+    const nextList = [...outList,userUrl];
+
+    const sendList = [...list,pattern];
+
     //const nextList = [...list,userUrl];
-    console.log("nextList = " + nextList);
-    setList(nextList);
-    localStorage.setItem("front",JSON.stringify(nextList));
-    setUrl('');
+    console.log("nextList = " + sendList);
     
+    setList(sendList);
+    setOut(nextList);
+    //localStorage.setItem("front",JSON.stringify(sendList));
+    localStorage.setItem("front",JSON.stringify(outList));
+    setUrl('');
+
+
     let port = chrome.runtime.connect({
       name: "Sample Communication"
     });
-    port.postMessage(nextList);
+    port.postMessage(sendList);
     port.onMessage.addListener(function(msg) {
       console.log(msg);
     });
@@ -115,7 +125,7 @@ const UserUrl =()=>{
         <div>
           <Container>
             <div className="input-box">
-              <input placeholder="ex) *://*.facebook.com/*" value={userUrl} onChange={onChange}  />
+              <input placeholder="ex)  facebook.com" value={userUrl} onChange={onChange}  />
               <ButtonStyle>
               <button onClick={onInsert}>add</button>
               <button onClick={clear}>clearAll</button>
@@ -126,8 +136,8 @@ const UserUrl =()=>{
                 {/* {localArr&&localArr.map((value, nextId) => (
                   <li key={nextId} >url : {value}</li>
                 ))} */}
-                {list && list.map((value, nextId) => (
-                  <li key={nextId} >url : {value}</li>
+                {outList && outList.map((value, nextId) => (
+                  <li key={nextId} >url  :  {value}</li>
                 ))}
             </ul>
             </ListStyle>

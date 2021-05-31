@@ -2,7 +2,6 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { MdDone, MdDelete } from "react-icons/md";
 import { useTodoDispatch } from "./TodoContext";
-import TextAlert from "./TextAlert";
 
 const Remove = styled.div`
   display: flex;
@@ -81,19 +80,10 @@ function TodoItem({ id, done, text }) {
     });
     localStorage.setItem("todos", JSON.stringify(curTodos));
   };
-  const checkDone = () => {
-    let curTodos: Array<Todo> = JSON.parse(localStorage.getItem("todos"));
-    curTodos = curTodos.filter(todo =>{
-      if(todo.done == true){
-        alert("dd")
-      }
-    })
-  }
   return (
     <TodoItemBlock>
       <CheckCircle done={done} onClick={onToggle}>
-        {done && <MdDone/>}
-        {/* {alert(<TextAlert done={done} onClick={onToggle}/>)} */}
+        {done && <MdDone />}
       </CheckCircle>
       <Text done={done}>{text}</Text>
       <Remove onClick={onRemove}>

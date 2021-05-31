@@ -47,9 +47,7 @@ const ButtonStyle = styled.div`
   }
 `
 const ListStyle = styled.div `
-  ul{
-    list-style-type: square;
-  }
+  list-style-type: square;
   color: rgb(230, 231, 232);
   font-size: 20px;
   height: 15vh;

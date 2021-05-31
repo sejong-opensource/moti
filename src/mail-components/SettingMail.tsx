@@ -71,7 +71,7 @@ const SettingStyle = styled.div`
     .listBlock {
         display: flex;
         button {
-            width: 4.5rem;
+            width: 5.5rem;
             height: fit-content;
             text-align: center;
             background: #6c63ff;

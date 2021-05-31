@@ -23,6 +23,9 @@ flex-direction: column;
       font-size: 15px;
     }
   }
+  .list::-webkit-scrollbar{
+    display: none;
+  }
 `
 const ButtonStyle = styled.div`
   display: flex;
@@ -52,6 +55,7 @@ const ListStyle = styled.div `
   font-size: 20px;
   height: 15vh;
   overflow-y:scroll;
+  -ms-overflow-style: none; 
 `
 
 
@@ -131,7 +135,7 @@ const UserUrl =()=>{
               <button onClick={clear}>clearAll</button>
               </ButtonStyle>
             </div>
-            <ListStyle>
+            <ListStyle className="list">
             <ul>
                 {/* {localArr&&localArr.map((value, nextId) => (
                   <li key={nextId} >url : {value}</li>

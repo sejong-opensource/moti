@@ -10,6 +10,11 @@ type MailType = {
   title: string;
   sender: string;
 };
+const Style = styled.div `
+.list::-webkit-scrollbar{
+    display: none;
+  }
+`
 const ButtonStyle = styled.div`
 margin-bottom: .5rem;
   display: flex;
@@ -41,6 +46,7 @@ const ListStyle = styled.div `
   font-size: 20px;
   height: 25vh;
   overflow-y:scroll;
+  -ms-overflow-style: none; 
 `
 const selectMail = (mail: MailType) => {
   let result = false;
@@ -115,30 +121,31 @@ const Mail = () => {
   });
   return (
     <div>
-      <div className="Button">
-      <ButtonStyle>
-      <PopupSetting callback={reload} />
-      <button
-        onClick={() => {
-          getMail();
-        }}
-      >
-        새로고침
-      </button>
-      </ButtonStyle>
-      </div>
-      <ListStyle>
-      <ul>
-         {mailList
-          ? mailList.map((mail) => (
-              <li>
-                {mail.title} / {mail.date} / {mail.sender}
-              </li>
-            ))
-          : null}
-      </ul>
-      </ListStyle>
-      
+      <Style>
+        <div className="Button">
+        <ButtonStyle>
+        <PopupSetting callback={reload} />
+        <button
+          onClick={() => {
+            getMail();
+          }}
+        >
+          새로고침
+        </button>
+        </ButtonStyle>
+        </div>
+        <ListStyle className="list">
+        <ul>
+          {mailList
+            ? mailList.map((mail) => (
+                <li>
+                  {mail.title} / {mail.date} / {mail.sender}
+                </li>
+              ))
+            : null}
+        </ul>
+        </ListStyle>
+      </Style>
     </div>
   );
 };

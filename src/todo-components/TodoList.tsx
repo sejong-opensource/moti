@@ -11,6 +11,10 @@ const TodoListBlock = styled.div`
   .scroll-box{
     height: 55vh;
     overflow-y: scroll;
+    -ms-overflow-style: none; 
+  }
+  .scroll-box::-webkit-scrollbar{
+    display: none;
   }
 `;
 

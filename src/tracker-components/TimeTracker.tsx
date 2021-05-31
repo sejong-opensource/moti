@@ -53,6 +53,8 @@ const ListStyle = styled.div `
   overflow-y:scroll;
 `
 
+
+
 const UserUrl =()=>{
     const [list, setList] = useState([]);
     const [userUrl, setUrl] = useState('');
@@ -87,13 +89,15 @@ const UserUrl =()=>{
     //https://www.facebook.com/
 
   const onInsert = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    
-    //const nextList = [...list,domain.match(pattern)];
-    const nextList = [...list,userUrl];
-    setList(nextList);
+    let pattern : string;
+    pattern = userUrl;
+    pattern = '*://*.'+userUrl+"/*";
 
+    const nextList = [...list,pattern];
+    //const nextList = [...list,userUrl];
+    console.log("nextList = " + nextList);
+    setList(nextList);
     localStorage.setItem("front",JSON.stringify(nextList));
-    let regex = 
     setUrl('');
     
     let port = chrome.runtime.connect({

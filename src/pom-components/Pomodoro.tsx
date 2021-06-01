@@ -75,9 +75,13 @@ const Pomodoro = () => {
     if (isWork) {
       setTimer(userInfo.workTime);
     } else {
-      setTimer(userInfo.breakTime);
+      if (userInfo.routineCount % userInfo.longBreakFrequency === 0) {
+        setTimer(userInfo.longBreakTime);
+      } else {
+        setTimer(userInfo.breakTime);
+      }
     }
-    setIsRun(o => !o);
+    setIsRun(false);
     clearInterval(interval);
   };
   const alarm = (msg: string) => {
@@ -106,15 +110,16 @@ const Pomodoro = () => {
               setRoutineCount();
               if (userInfo.routineCount % userInfo.longBreakFrequency == 0) {
                 setTimer(userInfo.longBreakTime);
+                alarm(`수고하셨습니다. ${userInfo.breakTime / 60}분 동안  긴 휴식시간 입니다`);
               } else {
                 setTimer(userInfo.breakTime);
+                alarm(`수고하셨습니다. ${userInfo.breakTime / 60}분 동안 휴식시간 입니다`);
               }
-              alarm(`수고하셨습니다. ${userInfo.breakTime}분 동안 휴식시간 입니다`);
               // alert(`수고하셨습니다. ${userInfo.breakTime}분 동안 휴식시간 입니다`);
             } else {
               setIsWork(true);
               setTimer(userInfo.workTime);
-              alarm(`이제 ${userInfo.breakTime}분 동안  집중시간 입니다`);
+              alarm(`이제 ${userInfo.breakTime / 60}분 동안  집중시간 입니다`);
               // alert(`이제 ${userInfo.breakTime}분 동안  집중시간 입니다`);
             }
           } else {
@@ -139,18 +144,19 @@ const Pomodoro = () => {
               }
               setIsWork(false);
               setRoutineCount();
-              if (userInfo.routineCount % userInfo.longBreakFrequency == 0) {
+              if (userInfo.routineCount % userInfo.longBreakFrequency === 0) {
                 setTimer(userInfo.longBreakTime);
+                alert(`수고하셨습니다. ${userInfo.breakTime / 60}분 동안  긴 휴식시간 입니다`);
               } else {
                 setTimer(userInfo.breakTime);
+                alert(`수고하셨습니다. ${userInfo.breakTime / 60}분 동안 휴식시간 입니다`);
               }
               // alarm(`수고하셨습니다. ${userInfo.breakTime}분 동안 휴식시간 입니다`);
-              alert(`수고하셨습니다. ${userInfo.breakTime}분 동안 휴식시간 입니다`);
             } else {
               setIsWork(true);
               setTimer(userInfo.workTime);
               // alarm(`이제 ${userInfo.breakTime}분 동안  집중시간 입니다`);
-              alert(`이제 ${userInfo.breakTime}분 동안  집중시간 입니다`);
+              alert(`이제 ${userInfo.breakTime / 60}분 동안  집중시간 입니다`);
             }
           } else {
             setTimer(timer - 1);

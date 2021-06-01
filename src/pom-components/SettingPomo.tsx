@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 type Prop = {
   callback: () => void;
+  reload: () => void;
 };
 const SettingStyle = styled.div`
   font-size: 20px;
@@ -24,8 +25,8 @@ const SettingStyle = styled.div`
   input[type="submit"] {
     width: 3rem;
     height: 2rem;
-    background:#6c63ff;
-    color:white;
+    background: #6c63ff;
+    color: white;
     font-size: 15px;
     border: none;
     cursor: pointer;
@@ -50,13 +51,15 @@ const SettingPomo = (prop: Prop) => {
       longBreakFrequencyRef.current &&
       autoBreakTimeRef.current
     ) {
-      user.userInfo.workTime = Number(workTimeRef.current.value);
-      user.userInfo.breakTime = Number(breakTimeRef.current.value);
-      user.userInfo.longBreakTime = Number(longBreakTimeRef.current.value);
+      user.userInfo.workTime = Number(workTimeRef.current.value) * 60;
+      user.userInfo.breakTime = Number(breakTimeRef.current.value) * 60;
+      user.userInfo.longBreakTime = Number(longBreakTimeRef.current.value) * 60;
       user.userInfo.longBreakFrequency = Number(longBreakFrequencyRef.current.value);
       userInfo.autoBreakTime = Boolean(autoBreakTimeRef.current.checked);
-      console.log(Boolean(autoBreakTimeRef.current.checked));
       setUserInfo(user.userInfo);
+
+      prop.callback();
+      prop.reload();
     }
   };
 
@@ -66,24 +69,26 @@ const SettingPomo = (prop: Prop) => {
         <form
           onSubmit={event => {
             onSubmit(event);
-            prop.callback();
           }}
         >
           <ul>
             <div className="box">
               <label>
-                집중시간 : <input ref={workTimeRef} defaultValue={String(userInfo.workTime)} />분
+                집중시간 : <input ref={workTimeRef} defaultValue={String(userInfo.workTime / 60)} />
+                분
               </label>
             </div>
             <div className="box">
               <label>
-                휴식시간 : <input ref={breakTimeRef} defaultValue={String(userInfo.breakTime)} />분
+                휴식시간 :{" "}
+                <input ref={breakTimeRef} defaultValue={String(userInfo.breakTime / 60)} />분
               </label>
             </div>
             <div className="box">
               <label>
                 긴 휴식시간 :{" "}
-                <input ref={longBreakTimeRef} defaultValue={String(userInfo.longBreakTime)} />분
+                <input ref={longBreakTimeRef} defaultValue={String(userInfo.longBreakTime / 60)} />
+                분
               </label>
             </div>
             <div className="box">

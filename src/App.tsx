@@ -30,7 +30,7 @@ const GlobalStyle = createGlobalStyle`
 const Container = styled.div`
   display: flex;
   flex-direction: row;
-  width: 90vw;
+  width: 75vw;
   margin: 0 auto;
   height: 100vh;
   display: flex;
@@ -39,7 +39,7 @@ const Container = styled.div`
 
 const BlockLeft = styled.div`
   display: flex;
-  height: 90vh;
+  height: 80vh;
 `;
 
 const BlockRight = styled.div`
@@ -47,7 +47,7 @@ const BlockRight = styled.div`
   flex: 1;
   flex-direction: column;
   margin-left: 1rem;
-  height: 90vh;
+  height: 80vh;
   .space {
     padding-left: 1rem;
   }

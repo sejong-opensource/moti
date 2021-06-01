@@ -2,7 +2,6 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { MdDone, MdDelete } from "react-icons/md";
 import { useTodoDispatch } from "./TodoContext";
-import TextAlert from "./TextAlert";
 
 const Remove = styled.div`
   display: flex;
@@ -66,8 +65,28 @@ type Todo = {
   done: boolean;
 };
 function TodoItem({ id, done, text }) {
+  const alertList = [
+    "잘하고 있어요!",
+    "조금만 더 힘을 내요!",
+    "더 잘할거에요!",
+    "멋져요!",
+    "응원합니다 :)",
+    "좋은 결과가 나올거에요!"
+  ];
+  const [alertText, setText] = React.useState("");
+    React.useEffect(() => {
+      setText(alertList[Math.floor(Math.random() * alertList.length)]);
+    }, [alert]);
+
   const dispatch = useTodoDispatch();
-  const onToggle = () => dispatch({ type: "TOGGLE", id });
+  const onToggle = () => {
+    dispatch({ type: "TOGGLE", id });
+    if(done==false) {
+      setText(alertList[Math.floor(Math.random() * alertList.length)]);
+      alert(alertText);
+    }
+    //alert({any:textList[Math.floor(Math.random() * textList.length)]});
+  }
   const onRemove = () => {
     dispatch({ type: "REMOVE", id });
 
@@ -81,14 +100,6 @@ function TodoItem({ id, done, text }) {
     });
     localStorage.setItem("todos", JSON.stringify(curTodos));
   };
-  const checkDone = () => {
-    let curTodos: Array<Todo> = JSON.parse(localStorage.getItem("todos"));
-    curTodos = curTodos.filter(todo =>{
-      if(todo.done == true){
-        alert("dd")
-      }
-    })
-  }
   return (
     <TodoItemBlock>
       <CheckCircle done={done} onClick={onToggle}>

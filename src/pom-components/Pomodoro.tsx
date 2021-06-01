@@ -5,6 +5,13 @@ import styled from "styled-components";
 
 const breakTimeMsg = "쉬는시간 입니다.";
 const WorkTimeMsg = "집중시간 입니다.";
+const Container = styled.div `
+display: flex;
+flex-direction: column;
+.timer {
+  align-items: center;
+}
+`
 
 const ButtonStyle = styled.div`
   display: flex;
@@ -18,14 +25,14 @@ const ButtonStyle = styled.div`
     border-radius: 0.3rem;
     border: none;
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.95);
+    border: 1px solid #6c63ff;
     color: rgba(255, 255, 255, 0.95);
     cursor: pointer;
     transition-property: background, color;
     transition-duration: 0.3s;
     &:hover {
-      background: rgba(255, 255, 255, 0.95);
-      color: black;
+      background: #6c63ff;
+      color: rgba(255, 255, 255, 0.95);
     }
   }
 
@@ -35,11 +42,12 @@ const ButtonStyle = styled.div`
 const TimerStyle = styled.div`
   margin: 0 auto;
   width: 260px;
-  margin-top: 1.5rem;
+  //margin-top: 1.5rem;
+ 
   .timerMsg {
-    font-size: 25px;
+    font-size: 30px;
     color: rgb(230, 231, 232);
-    margin-bottom: 1rem;
+    //margin-bottom: 1rem;
   }
   .clock {
     font-size: 100px;
@@ -167,6 +175,7 @@ const Pomodoro = () => {
     Math.floor(timer % 60) < 10 ? `0${Math.floor(timer % 60)}` : `${Math.floor(timer % 60)}`;
   return (
     <>
+    <Container>
       {" "}
       {/* <Toggle onClick={onClickToggle} /> */}{" "}
       <ButtonStyle>
@@ -195,7 +204,7 @@ const Pomodoro = () => {
         </button>{" "}
         <PopupSetting callback={reload} />
       </ButtonStyle>
-      <TimerStyle>
+      <TimerStyle className="timer">
         <div className="pomodoro">
           {isWork && (
             <div className="timer">
@@ -220,6 +229,7 @@ const Pomodoro = () => {
           </div>
         </div>
       </TimerStyle>
+    </Container>
     </>
   );
 };

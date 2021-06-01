@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import img from "../assets/purple.jpg"
 
 const PomTemplateBlock = styled.div`
   height: 50vh;
+  //background-image: url(${img});
   background: rgb(32,28,53);
   position: relative;
   border-radius: 16px;

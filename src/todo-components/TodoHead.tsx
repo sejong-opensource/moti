@@ -1,8 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { useTodoState } from "./TodoContext";
+import img from "../assets/purple.jpg"
 
 const TodoHeadBlock = styled.div`
+//background-image: url(${img});
+//border-radius: 1rem;
   padding-top: 48px;
   padding-left: 32px;
   padding-right: 32px;

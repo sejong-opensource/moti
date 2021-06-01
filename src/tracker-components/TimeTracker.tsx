@@ -33,7 +33,7 @@ const ButtonStyle = styled.div`
   button {
     margin-left: 0.3rem;
     margin-right: 0.3rem;
-    width: 3xrem;
+    width: 3rem;
     height: 3rem;
     border-radius: 0.3rem;
     border: none;
@@ -131,8 +131,8 @@ const UserUrl =()=>{
             <div className="input-box">
               <input placeholder="ex)  facebook.com" value={userUrl} onChange={onChange}  />
               <ButtonStyle>
-              <button onClick={onInsert}>add</button>
-              <button onClick={clear}>clearAll</button>
+              <button onClick={onInsert}>추가</button>
+              <button onClick={clear}>전체삭제</button>
               </ButtonStyle>
             </div>
             <ListStyle className="list">

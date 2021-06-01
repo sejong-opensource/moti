@@ -44,7 +44,7 @@ const ListStyle = styled.div `
   list-style-type: square;
   color: rgb(230, 231, 232);
   font-size: 20px;
-  height: 25vh;
+  height: 18vh;
   overflow-y:scroll;
   -ms-overflow-style: none; 
 `

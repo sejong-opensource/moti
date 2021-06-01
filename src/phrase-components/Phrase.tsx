@@ -67,7 +67,7 @@ const Phrase = () => {
               setPhrase(phraseList[Math.floor(Math.random() * phraseList.length)]);
             }}
           >
-            change
+           변경
           </button>
         </ButtonStyle>
         </div>

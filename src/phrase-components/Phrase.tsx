@@ -30,6 +30,7 @@ const ButtonStyle = styled.div`
   display: flex;
   padding: 0.3rem;
   justify-content: flex-end;
+  margin-bottom: 1rem;
   button {
     margin-right: 1rem;
     height: 2rem;
